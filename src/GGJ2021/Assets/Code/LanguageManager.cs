@@ -4,15 +4,73 @@ using UnityEngine;
 
 public class LanguageManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //---------------------------
+    // Class definitions 
+
+    public class WordProgression
     {
-        
+        public LanguageWord m_word;
+        public bool m_isUnlocked;
     }
 
-    // Update is called once per frame
-    void Update()
+
+
+
+    //---------------------------
+    // Vars
+
+    public static LanguageManager Instance { get; private set; }
+
+    [Header("Language Manager")]
+    public LanguageDictionary m_Dictionary;
+
+    private List<WordProgression> m_wordProgression = new List<WordProgression>();
+
+
+
+
+    //---------------------------
+    // Monobehaviour 
+
+    private void Awake()
     {
-        
+        Instance = this;
+        Init();
+    }
+
+
+
+
+    //---------------------------
+    // Public 
+
+    public void LearnWord(LanguageWord word)
+    {
+
+    }
+
+    public void IsWordLearned(LanguageWord word)
+    {
+
+    }
+
+
+
+
+    //---------------------------
+    // Private
+    
+    private void Init()
+    {
+        foreach (LanguageWord word in m_Dictionary.Words)
+        {
+            WordProgression prog = new WordProgression
+            {
+                m_word = word,
+                m_isUnlocked = false
+            };
+
+            m_wordProgression.Add(prog);
+        }
     }
 }
