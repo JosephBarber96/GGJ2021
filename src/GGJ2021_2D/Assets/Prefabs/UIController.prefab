@@ -284,9 +284,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NPCSpeechBubble: {fileID: 6460777161952953097}
   m_NPCSpeechBubbleImage: {fileID: 431680614549117254}
-  LetterSpritePrefab: {fileID: 8364946348823281747, guid: b1e143935df6b674d92a97c7f02371ef,
+  UIWordPanelPrefab: {fileID: 2332328388056099896, guid: 75c19ef0b9997bf4fb7c4d4530287b11,
     type: 3}
-  m_currentSentence: []
 --- !u!1 &2720580652325436156
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,8 +321,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 470.79468, y: 156.53925}
+  m_AnchoredPosition: {x: -5.3, y: 2.6}
+  m_SizeDelta: {x: 460.2104, y: 151.2471}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3588029343895637746
 CanvasRenderer:
@@ -382,7 +381,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 32, y: 32}
-  m_Spacing: {x: 2, y: 2}
+  m_CellSize: {x: 125, y: 60}
+  m_Spacing: {x: 5, y: 2}
   m_Constraint: 0
   m_ConstraintCount: 2

@@ -5,15 +5,6 @@ using UnityEngine.UI;
 
 public class UIConversationController : MonoBehaviour
 {
-    [System.Serializable]
-    public class LetterAnimator
-    {
-        public Image m_image;
-        public float m_elapsedTime;
-        public float m_delay;
-        public bool m_done;
-    }
-
     public enum eState
     {
         NONE,
@@ -31,14 +22,12 @@ public class UIConversationController : MonoBehaviour
     [Header("Components")]
     public Transform m_NPCSpeechBubble;
     public Image m_NPCSpeechBubbleImage;
-    public GameObject LetterSpritePrefab;
+    public GameObject UIWordPanelPrefab;
 
     // Private 
     private NPC m_currentNpc;
     private eState m_state;
-    [SerializeField]
-    private List<LetterAnimator> m_currentSentence = new List<LetterAnimator>();
-
+    private List<UIWordPanel> m_currentSentence = new List<UIWordPanel>();
     private float m_stateTime;
 
 
@@ -125,42 +114,17 @@ public class UIConversationController : MonoBehaviour
         {
             case eState.TransitionSpeechBubbleOn:
                 EnableSpeechBubble(true);
-                SetImageAlpha(m_NPCSpeechBubbleImage, 0);
+                Utils.SetImageAlpha(m_NPCSpeechBubbleImage, 0);
                 break;
             case eState.TransitioningSentenceOn:
                 {
-                    int char_index = 0;
-
                     // For each word
                     foreach (LanguageWord word in m_currentNpc.m_Sentence.m_Words)
                     {
-                        // Generate new letter animators
-                        for (int i = 0; i < word.m_Word.Length; i++)
-                        {
-                            // Get char
-                            char this_char = word.m_Word[i];
-
-                            // Calc target time for transition end
-                            float targetTime = (char_index + 1) * LETTER_TRANSITION_TIME;
-
-                            // Create new Image ui component
-                            Image letterImage = GameObject.Instantiate(LetterSpritePrefab).GetComponent<Image>();
-                            letterImage.sprite = UIController.Instance.GetSpriteForLetter(this_char);
-                            letterImage.transform.SetParent(m_NPCSpeechBubble.transform, false);
-                            SetImageAlpha(letterImage, 0);
-
-                            // Create animator 
-                            LetterAnimator newLetter = new LetterAnimator
-                            {
-                                m_image = letterImage,
-                                m_elapsedTime = 0,
-                                m_delay = targetTime - LETTER_TRANSITION_TIME,
-                                m_done = false
-                            };
-                            m_currentSentence.Add(newLetter);
-
-                            char_index++;
-                        }
+                        UIWordPanel wordPanel = GameObject.Instantiate(UIWordPanelPrefab).GetComponent<UIWordPanel>();
+                        wordPanel.Setup(word.m_Word);
+                        wordPanel.transform.SetParent(m_NPCSpeechBubble.transform, false);
+                        m_currentSentence.Add(wordPanel);
                     }
                 }
                 break;
@@ -193,7 +157,7 @@ public class UIConversationController : MonoBehaviour
             normalized = 1;
         }
 
-        SetImageAlpha(m_NPCSpeechBubbleImage, normalized);
+        Utils.SetImageAlpha(m_NPCSpeechBubbleImage, normalized);
 
         if (exit)
         {
@@ -205,28 +169,28 @@ public class UIConversationController : MonoBehaviour
     {
         bool allDone = true;
 
-        for (int i = 0; i < m_currentSentence.Count; i++)
-        {
-            if (m_currentSentence[i].m_done) { continue; }
+        //for (int i = 0; i < m_currentSentence.Count; i++)
+        //{
+        //    if (m_currentSentence[i].m_done) { continue; }
 
-            allDone = false;
+        //    allDone = false;
 
-            m_currentSentence[i].m_elapsedTime += Time.deltaTime;   
-            float effective_elapsed = m_currentSentence[i].m_elapsedTime - m_currentSentence[i].m_delay;
+        //    m_currentSentence[i].m_elapsedTime += Time.deltaTime;   
+        //    float effective_elapsed = m_currentSentence[i].m_elapsedTime - m_currentSentence[i].m_delay;
 
-            if (effective_elapsed > 0)
-            {
-                float normalized = effective_elapsed / LETTER_TRANSITION_TIME;
+        //    if (effective_elapsed > 0)
+        //    {
+        //        float normalized = effective_elapsed / LETTER_TRANSITION_TIME;
 
-                if (normalized > 1)
-                {
-                    normalized = 1;
-                    m_currentSentence[i].m_done = true;
-                }
+        //        if (normalized > 1)
+        //        {
+        //            normalized = 1;
+        //            m_currentSentence[i].m_done = true;
+        //        }
 
-                SetImageAlpha(m_currentSentence[i].m_image, normalized);
-            }
-        }
+        //        SetImageAlpha(m_currentSentence[i].m_image, normalized);
+        //    }
+        //}
 
         if (allDone)
         {
@@ -253,13 +217,6 @@ public class UIConversationController : MonoBehaviour
 
     //------------------------------
     // Util
-
-    void SetImageAlpha(Image image, float alpha)
-    {
-        Color col = image.color;
-        col.a = alpha;
-        image.color = col;
-    }
 
     private void EnableSpeechBubble(bool enab)
     {
