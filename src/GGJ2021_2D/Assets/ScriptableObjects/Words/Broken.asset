@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67755cffa46a700408ae64e58fb4dcfc, type: 3}
   m_Name: Broken
   m_EditorClassIdentifier: 
-  m_Word: Ship
+  m_Word: Broken
