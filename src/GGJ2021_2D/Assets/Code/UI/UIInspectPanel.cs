@@ -9,10 +9,10 @@ public class UIInspectPanel : MonoBehaviour
     public Text m_inspectText;
     public Image m_inspectImage;
 
-    public void DisplayInfo(string str, Sprite spr)
+    public void DisplayInfo(InspectableInformation info)
     {
         m_InspectBubbleRect.gameObject.SetActive(true);
-        m_inspectText.text = str;
-        m_inspectImage.sprite = spr;
+        m_inspectText.text = info.InspectName.m_Word;
+        m_inspectImage.sprite = info.InspectIcon;
     }
 }

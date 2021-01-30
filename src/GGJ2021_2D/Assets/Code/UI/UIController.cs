@@ -72,9 +72,9 @@ public class UIController : MonoBehaviour
     //------------------------------
     // Inspect
 
-    public void InspectItem()
+    public void InspectItem(InspectableInformation info)
     {
-        m_inspectPanel.DisplayInfo("Test test", null);
+        m_inspectPanel.DisplayInfo(info);
     }
 
 
