@@ -340,6 +340,16 @@ PrefabInstance:
       propertyPath: ActionManager
       value: 
       objectReference: {fileID: 881131116}
+    - target: {fileID: 270810983910315944, guid: 2314ee47ef654d542b9b9db4341adcaf,
+        type: 3}
+      propertyPath: VerticalSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 270810983910315944, guid: 2314ee47ef654d542b9b9db4341adcaf,
+        type: 3}
+      propertyPath: HorizontalSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1455330382397153822, guid: 2314ee47ef654d542b9b9db4341adcaf,
         type: 3}
       propertyPath: m_RootOrder

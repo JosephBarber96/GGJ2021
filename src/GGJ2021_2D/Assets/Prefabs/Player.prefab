@@ -116,3 +116,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerAnimator: {fileID: 3330338531686905781}
+  ActionManager: {fileID: 0}
+  VerticalSpeed: 10
+  HorizontalSpeed: 10

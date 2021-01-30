@@ -4,6 +4,12 @@ public class Player : MonoBehaviour
 {
     public Animator PlayerAnimator;
     public ActionManager ActionManager;
+
+    [Range(1, 50)]
+    public float VerticalSpeed;
+    [Range(1, 50)]
+    public float HorizontalSpeed;
+
     private int _movingForwardHash;
     private int _movingBackwardHash;
     private int _movingLeftHash;
@@ -22,9 +28,31 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerAnimator.SetBool(_movingForwardHash, ActionManager.IsEnabled(ActionManager.InputAction.MoveForward));
-        PlayerAnimator.SetBool(_movingBackwardHash, ActionManager.IsEnabled(ActionManager.InputAction.MoveBackward));
-        PlayerAnimator.SetBool(_movingLeftHash, ActionManager.IsEnabled(ActionManager.InputAction.MoveLeft));
-        PlayerAnimator.SetBool(_movingRightHash, ActionManager.IsEnabled(ActionManager.InputAction.MoveRight));
+        var movingForward = ActionManager.IsEnabled(ActionManager.InputAction.MoveForward);
+        var movingBackward = ActionManager.IsEnabled(ActionManager.InputAction.MoveBackward);
+        var movingLeft = ActionManager.IsEnabled(ActionManager.InputAction.MoveLeft);
+        var movingRight = ActionManager.IsEnabled(ActionManager.InputAction.MoveRight);
+
+        PlayerAnimator.SetBool(_movingForwardHash, movingForward);
+        PlayerAnimator.SetBool(_movingBackwardHash, movingBackward);
+        PlayerAnimator.SetBool(_movingLeftHash, movingLeft);
+        PlayerAnimator.SetBool(_movingRightHash, movingRight);
+
+        if (movingForward)
+        {
+            transform.Translate(new Vector2(0, VerticalSpeed * Time.deltaTime));
+        }
+        if (movingBackward)
+        {
+            transform.Translate(new Vector2(0, -VerticalSpeed * Time.deltaTime));
+        }
+        if (movingLeft)
+        {
+            transform.Translate(new Vector2(-HorizontalSpeed * Time.deltaTime, 0));
+        }
+        if (movingRight)
+        {
+            transform.Translate(new Vector2(HorizontalSpeed * Time.deltaTime, 0));
+        }
     }
 }
