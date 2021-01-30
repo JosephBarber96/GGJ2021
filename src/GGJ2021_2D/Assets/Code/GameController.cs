@@ -53,6 +53,10 @@ public class GameController : MonoBehaviour
             case eScenes.Tutorial:
                 SceneManager.LoadScene(1);
                 break;
+
+            case eScenes.Game:
+                SceneManager.LoadScene(2);
+                break;
         }
     }
 

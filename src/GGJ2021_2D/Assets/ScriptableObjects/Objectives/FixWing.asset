@@ -15,4 +15,4 @@ MonoBehaviour:
   m_Objective: 0
   m_ObjectiveTitle: Fix wing
   m_ObjectiveDescription: Your wing is broken! it needs fixing
-  m_ObjectiveIcon: {fileID: 21300000, guid: 737f35f560442ba4cb1068a8ea40d0d6, type: 3}
+  m_ObjectiveIcon: {fileID: 21300000, guid: 553025bed6d2c20418cef6a42cadc69d, type: 3}
