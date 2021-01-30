@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inspectable : MonoBehaviour, IInteractable
+public abstract class Inspectable : MonoBehaviour, IInteractable
 {   
     [Header("Inspectable")]
     public SpriteRenderer m_inspectIcon;
-    public InspectableInformation Information;
 
     private Vector2 m_inspectSpriteStartPos;
     private Vector2 m_inspectSpriteBouncePos;
@@ -24,16 +23,10 @@ public class Inspectable : MonoBehaviour, IInteractable
     }
 
 
-
     //-----------------------
     // Player interact  
 
-    public void Interact(Player player)
-    {
-        UIController.Instance.InspectItem(this);
-    }
-
-
+    public abstract void Interact(Player player);
 
 
     //-----------------------
