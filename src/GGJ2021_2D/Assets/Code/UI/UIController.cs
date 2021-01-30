@@ -36,6 +36,13 @@ public class UIController : MonoBehaviour
     public RectTransform m_wordUnlockedLowerAnchor;
     public RectTransform m_wordUnlockedHigherAnchor;
 
+    [Header("Objectives")]
+    public UIObjectiveController m_objectiveController;
+
+    [Header("Misc Assets")]
+    public Sprite m_RedCross;
+    public Sprite m_greenTick;
+
     private List<WordUnlockedAnimator> m_wordUnlockedAnimatorsList = new List<WordUnlockedAnimator>();
     private List<LanguageWord> m_wordUnlockedBufferList = new List<LanguageWord>();
 
@@ -92,7 +99,28 @@ public class UIController : MonoBehaviour
     }
 
 
-        
+
+
+    //------------------------------
+    // Objectives
+
+    public void ToggleObjectives()
+    {
+        m_objectiveController.ToggleObjectives();
+    }
+
+    public void OpenObjectives()
+    {
+        m_objectiveController.Open();
+    }
+
+    public void CloseObjectives()
+    {
+        m_objectiveController.Close();
+    }
+
+
+
 
     //------------------------------
     // Unlocking a word
