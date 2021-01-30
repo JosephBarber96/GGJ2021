@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "InspectableInfo", menuName = "GGJ/InspectableInfo")]
-public class InspectableInformation : ScriptableObject
+[CreateAssetMenu(fileName = "AlienInspectableInfo", menuName = "GGJ/AlienInspectableInfo")]
+public class AlienInspectableInformation : ScriptableObject
 {
     public Sprite InspectIcon;
     public LanguageWord InspectName;
