@@ -72,9 +72,17 @@ public class UIController : MonoBehaviour
     //------------------------------
     // Inspect
 
-    public void InspectItem(InspectableInformation info)
+    public Inspectable CurrentInspectable { get; private set;}
+
+    public void InspectItem(Inspectable inspectable)
     {
-        m_inspectPanel.DisplayInfo(info);
+        CurrentInspectable = inspectable;
+        m_inspectPanel.DisplayInfo(CurrentInspectable.Information);
+    }
+
+    public void HideInspect()
+    {
+        m_inspectPanel.HideInfo();
     }
 
 

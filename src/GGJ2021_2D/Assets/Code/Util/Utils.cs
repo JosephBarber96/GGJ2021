@@ -11,4 +11,11 @@ public static class Utils
         col.a = alpha;
         image.color = col;
     }
+
+    public static void SetImageAlpha(SpriteRenderer spriteRenderer, float alpha)
+    {
+        Color col = spriteRenderer.color;
+        col.a = alpha;
+        spriteRenderer.color = col;
+    }
 }

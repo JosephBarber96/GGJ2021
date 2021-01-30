@@ -15,4 +15,9 @@ public class UIInspectPanel : MonoBehaviour
         m_inspectText.text = info.InspectName.m_Word;
         m_inspectImage.sprite = info.InspectIcon;
     }
+
+    public void HideInfo()
+    {
+        m_InspectBubbleRect.gameObject.SetActive(false);
+    }
 }

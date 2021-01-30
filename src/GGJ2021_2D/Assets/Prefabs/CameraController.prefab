@@ -44,5 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCamera: {fileID: 0}
-  Player: {fileID: 0}
+  m_Player: {fileID: 0}
   CameraSmoothTime: 0.18
+  m_CameraSmoothScalar: 6

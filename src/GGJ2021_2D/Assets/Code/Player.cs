@@ -19,6 +19,10 @@ public class Player : MonoBehaviour
     private Vector2 m_currentBlend;
     private Vector2 m_targetBlend;
 
+    // Movement
+    public Vector2 Position { get { return m_currentPos; } }
+    private Vector2 m_currentPos;
+
     void Awake()
     {
         _interactableObjects = new HashSet<GameObject>();
@@ -38,12 +42,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateMovement();
-
         if (_actionManager.IsEnabled(ActionManager.InputAction.Interact))
         {
             Interact();
         }
+    }
+
+    private void FixedUpdate()
+    {
+        UpdateMovement();
     }
 
     private void UpdateMovement()
@@ -93,9 +100,10 @@ public class Player : MonoBehaviour
 
         moveDelta.Normalize();
         Vector2 newPos = Rb.position;
-        newPos.x += moveDelta.x * HorizontalSpeed * Time.deltaTime;
-        newPos.y += moveDelta.y * VerticalSpeed * Time.deltaTime;
+        newPos.x += moveDelta.x * HorizontalSpeed * Time.fixedDeltaTime;
+        newPos.y += moveDelta.y * VerticalSpeed * Time.fixedDeltaTime;
         Rb.MovePosition(newPos);
+        m_currentPos = newPos;
 
         // Animator
         PlayerAnimator.SetFloat(_animXBlendHash, m_currentBlend.x);
