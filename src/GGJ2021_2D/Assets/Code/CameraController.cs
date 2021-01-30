@@ -4,38 +4,57 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Camera PlayerCamera;
-    public Player m_Player;
-    [Range(0, 1f)]
-    public float CameraSmoothTime;
+    private enum eState
+    {
+        Off,
+        On,
+    }
 
     public float m_CameraSmoothScalar = 16f;
 
+    private Camera m_camera;
+    private Player m_player;
     private Vector2 _cameraVelocity = Vector2.zero;
+    private eState m_state;
 
     private void Awake()
     {
-        // fix this as soon as spawning infrastructure is in place to get a ref from the game controller
-        m_Player = FindObjectOfType<Player>();
+        m_state = eState.Off;
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    var targetPosition = Vector2.SmoothDamp(PlayerCamera.transform.position, m_Player.transform.position,
-    //        ref _cameraVelocity, CameraSmoothTime);
-    //    PlayerCamera.transform.position = new Vector3(targetPosition.x, targetPosition.y, PlayerCamera.transform.position.z);
-    //}
+    private void OnEnable()
+    {
+        GameController.OnSceneLoad += OnSceneLoad;
+    }
+
+    private void OnDisable()
+    {
+        GameController.OnSceneLoad -= OnSceneLoad;
+    }
+
+    private void OnSceneLoad(GameController.eScenes scene)
+    {
+        if (scene == GameController.eScenes.Tutorial || 
+            scene == GameController.eScenes.Game)
+        {
+            m_player = FindObjectOfType<Player>();
+            m_camera = Camera.main;
+            m_state = eState.On;
+        }
+    }
 
     private void LateUpdate()
     {
-        float z = PlayerCamera.transform.position.z;
-        Vector3 thisPos = PlayerCamera.transform.position;
+        if (m_state == eState.On)
+        {
+            float z = m_camera.transform.position.z;
+            Vector3 thisPos = m_camera.transform.position;
 
-        PlayerCamera.transform.position = Vector3.Lerp(
-            new Vector3(thisPos.x, thisPos.y, z),
-            new Vector3(m_Player.Position.x, m_Player.Position.y, z),
-            Time.deltaTime * m_CameraSmoothScalar
-            );
+            m_camera.transform.position = Vector3.Lerp(
+                new Vector3(thisPos.x, thisPos.y, z),
+                new Vector3(m_player.Position.x, m_player.Position.y, z),
+                Time.deltaTime * m_CameraSmoothScalar
+                );
+        }
     }
 }

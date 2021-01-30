@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: ShipInfo
   m_EditorClassIdentifier: 
   InspectIcon: {fileID: 21300000, guid: 2c9643e1d63f5334096624994be56d71, type: 3}
-  InspectName: {fileID: 0}
-  InspectText: []
+  InspectName: {fileID: 11400000, guid: 174bb9eebb9f09f4aba50ad1ad990494, type: 2}
+  InspectText:
+  - {fileID: 11400000, guid: 37310148190f9fc488073d87d57c053a, type: 2}

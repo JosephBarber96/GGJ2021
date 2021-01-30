@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5643477861902765245}
   - component: {fileID: 6859563575996840872}
   m_Layer: 0
-  m_Name: NPC
+  m_Name: BaseNPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49eb740dc1613ec44bfda5874e6ab0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Canvas: {fileID: 0}
+  m_Sentence:
+    m_Words: []
+  m_ChatIcon: {fileID: 21300000, guid: d323504636ed5b04f857f6c036db62e5, type: 3}
 --- !u!212 &5643477861902765245
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -85,7 +87,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3533f7736bf711f4d87554f7c5970789, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a9c5ceac87cdb5d4f920d63c6535c0b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -113,12 +115,12 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 1.28}
+    oldSize: {x: 1.21, y: 2.04}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 1.28}
+  m_Size: {x: 1.21, y: 2.04}
   m_EdgeRadius: 0
