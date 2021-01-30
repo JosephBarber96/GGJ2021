@@ -20,8 +20,10 @@ public class UIConversationController : MonoBehaviour
     public const float LETTER_TRANSITION_TIME = 0.15f;
 
     [Header("Components")]
-    public Transform m_NPCSpeechBubble;
+    public Transform m_NPCSpeechBubbleTransform;
+    public Transform m_wordPanelParent;
     public Image m_NPCSpeechBubbleImage;
+    public Image m_NPCChatImage;
     public GameObject UIWordPanelPrefab;
 
     // Private 
@@ -37,11 +39,6 @@ public class UIConversationController : MonoBehaviour
     private void Awake()
     {
         m_state = eState.NONE;
-    }
-
-    private void Start()
-    {
-        EnableSpeechBubble(false);
     }
 
     private void Update()
@@ -78,6 +75,7 @@ public class UIConversationController : MonoBehaviour
     {
         ClearSentences();
         m_currentNpc = npc;
+        m_NPCSpeechBubbleTransform.gameObject.SetActive(true);
         SetState(eState.TransitionSpeechBubbleOn);
     }
 
@@ -113,7 +111,8 @@ public class UIConversationController : MonoBehaviour
         switch (m_state)
         {
             case eState.TransitionSpeechBubbleOn:
-                EnableSpeechBubble(true);
+                m_NPCChatImage.sprite = m_currentNpc.m_ChatIcon;
+                Utils.SetImageAlpha(m_NPCChatImage, 0);
                 Utils.SetImageAlpha(m_NPCSpeechBubbleImage, 0);
                 break;
             case eState.TransitioningSentenceOn:
@@ -123,7 +122,7 @@ public class UIConversationController : MonoBehaviour
                     {
                         UIWordPanel wordPanel = GameObject.Instantiate(UIWordPanelPrefab).GetComponent<UIWordPanel>();
                         wordPanel.Setup(word.m_Word);
-                        wordPanel.transform.SetParent(m_NPCSpeechBubble.transform, false);
+                        wordPanel.transform.SetParent(m_wordPanelParent.transform, false);
                         m_currentSentence.Add(wordPanel);
 
                         // Unlock the word 
@@ -164,6 +163,7 @@ public class UIConversationController : MonoBehaviour
         }
 
         Utils.SetImageAlpha(m_NPCSpeechBubbleImage, normalized);
+        Utils.SetImageAlpha(m_NPCChatImage, normalized);
 
         if (exit)
         {
@@ -224,21 +224,14 @@ public class UIConversationController : MonoBehaviour
     //------------------------------
     // Util
 
-    private void EnableSpeechBubble(bool enab)
-    {
-        m_NPCSpeechBubbleImage.enabled = enab;
-    }
-
     private void ClearSentences()
     {
         if (m_currentSentence.Count == 0) { return; }
 
-        Debug.Log("clear");
-
-        int childCount = m_NPCSpeechBubble.transform.childCount;
+        int childCount = m_NPCSpeechBubbleTransform.transform.childCount;
         for (int i = childCount - 1; i >= 0; i--)
         {
-            GameObject.Destroy(m_NPCSpeechBubble.transform.GetChild(i).gameObject);
+            GameObject.Destroy(m_wordPanelParent.transform.GetChild(i).gameObject);
         }
         m_currentSentence.Clear();
     }

@@ -12,6 +12,7 @@ public class NPC : MonoBehaviour
 
     [Header("Sentence")]
     public NPCSentence m_Sentence;
+    public Sprite m_ChatIcon;
 
     public void OnMouseOver()
     {

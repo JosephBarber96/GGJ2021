@@ -27,6 +27,9 @@ public class UIController : MonoBehaviour
     [Header("NPC Conversation")]
     public UIConversationController m_conversationController;
 
+    [Header("Inspect")]
+    public UIInspectPanel m_inspectPanel;
+
     [Header("Word Unlocked")]
     public Transform m_WordUnlockedPanel;
     public GameObject WordUnlockedPrefab;
@@ -61,6 +64,17 @@ public class UIController : MonoBehaviour
     public void StartConversation(NPC npc)
     {
         m_conversationController.StartConversation(npc);
+    }
+
+
+
+
+    //------------------------------
+    // Inspect
+
+    public void InspectItem()
+    {
+        m_inspectPanel.DisplayInfo("Test test", null);
     }
 
 
@@ -130,14 +144,12 @@ public class UIController : MonoBehaviour
             {
                 float normalizedFadeInTime = t / FADE_IN_TIME;
                 m_wordUnlockedAnimatorsList[i].m_panel.SetAlpha(normalizedFadeInTime);
-                Debug.Log("setting alpha UP: " + normalizedFadeInTime);
             }
             // Fading out 
             else if (t > (LERP_TIME - FADE_OUT_TIME))
             {
                 float normalizedFadeOutTime = t - (LERP_TIME - FADE_OUT_TIME);
                 m_wordUnlockedAnimatorsList[i].m_panel.SetAlpha(1 - normalizedFadeOutTime);
-                Debug.Log("setting alpha DOWN: " + normalizedFadeOutTime);
             }
 
             if (normalized >= 1)
@@ -157,7 +169,6 @@ public class UIController : MonoBehaviour
             {
                 GameObject.Destroy(m_wordUnlockedAnimatorsList[i].m_panel.gameObject);
                 m_wordUnlockedAnimatorsList.RemoveAt(i);
-                Debug.Log("deleted it");
             }
         }
     }
