@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_inspectIcon: {fileID: 3970875227188913428}
-  Information: {fileID: 0}
+  Information: {fileID: 11400000, guid: 3b076e8e149c2ab45a5418bb11bae3f7, type: 2}
 --- !u!1001 &4121657349293261616
 PrefabInstance:
   m_ObjectHideFlags: 0
