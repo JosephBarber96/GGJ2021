@@ -51,12 +51,41 @@ public class GameController : MonoBehaviour
         switch (newScene)
         {
             case eScenes.Tutorial:
-                SceneManager.LoadScene(1);
+                StartCoroutine(LoadScene(1));
                 break;
 
             case eScenes.Game:
-                SceneManager.LoadScene(2);
+                StartCoroutine(LoadScene(2));
                 break;
+        }
+    }
+
+    IEnumerator LoadScene(int sceneIndex)
+    {
+        yield return null;
+
+        // Fade to black
+        {
+            // UI code here
+        }
+
+        // Async scene load
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneIndex);
+        asyncOperation.allowSceneActivation = false;
+        while (!asyncOperation.isDone)
+        {
+            // Check if the load has finished
+            if (asyncOperation.progress >= 0.9f)
+            {
+                asyncOperation.allowSceneActivation = true;
+            }
+
+            yield return null;
+        }
+
+        // Unfade 
+        {
+            // UI code here 
         }
     }
 
