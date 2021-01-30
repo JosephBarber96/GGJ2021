@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_inspectIcon: {fileID: 3970875227188913428}
-  Information: {fileID: 11400000, guid: 3b076e8e149c2ab45a5418bb11bae3f7, type: 2}
+  Information: {fileID: 0}
 --- !u!1001 &4121657349293261616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -136,6 +136,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Radius
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6284186899411224267, guid: 8d088941a6cc3a947827cf6b536375cb,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6284186899411224271, guid: 8d088941a6cc3a947827cf6b536375cb,
         type: 3}
