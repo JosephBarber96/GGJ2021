@@ -9,11 +9,22 @@ public class UIInspectPanel : MonoBehaviour
     public Text m_inspectText;
     public Image m_inspectImage;
 
-    public void DisplayInfo(InspectableInformation info)
+    public void DisplayAlienInfo(AlienInspectableInformation info)
     {
         m_InspectBubbleRect.gameObject.SetActive(true);
+
         m_inspectText.text = info.InspectName.m_Word;
         m_inspectImage.sprite = info.InspectIcon;
+    }
+
+    public void DisplayEnglishInfo(EnglishInspectableInformation info)
+    {
+        m_InspectBubbleRect.gameObject.SetActive(true);
+
+        m_inspectText.text = info.InspectName;
+        m_inspectImage.sprite = info.InspectIcon;
+
+        //info.Description
     }
 
     public void HideInfo()
