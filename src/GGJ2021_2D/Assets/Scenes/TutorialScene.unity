@@ -410,6 +410,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShipInspectable Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8464969109943987422, guid: 4636b1f23bc43164ea8ff57d2fe861b6,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8464969109943987422, guid: 4636b1f23bc43164ea8ff57d2fe861b6,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8464969109943987422, guid: 4636b1f23bc43164ea8ff57d2fe861b6,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8464969109943987422, guid: 4636b1f23bc43164ea8ff57d2fe861b6,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8464969109943987422, guid: 4636b1f23bc43164ea8ff57d2fe861b6,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4636b1f23bc43164ea8ff57d2fe861b6, type: 3}
 --- !u!4 &585347679 stripped

@@ -12,16 +12,13 @@ public class ObjectiveController : MonoBehaviour
 
     public class ObjectiveProgression
     {
-        public eObjectives m_objective;
+        public ObjectiveData m_objectiveData;
         public bool m_isComplete;
     }
 
     public static ObjectiveController Instance { get; private set; }
 
-    [Header("Objectives")]
-    public List<ObjectiveData> m_AllObjectivesList = new List<ObjectiveData>();
-
-    private List<ObjectiveProgression> m_objectiveProgressionList = new List<ObjectiveProgression>();
+    public List<ObjectiveProgression> CurrentObjectives { get; private set; }
 
 
     //---------------------------
@@ -36,7 +33,7 @@ public class ObjectiveController : MonoBehaviour
         }
 
         Instance = this;
-        Init();
+        CurrentObjectives = new List<ObjectiveProgression>();
     }
 
 
@@ -44,57 +41,54 @@ public class ObjectiveController : MonoBehaviour
 
     //---------------------------
     // Objective
+
+    public void UnlockObjective(ObjectiveData objective)
+    {   
+        if (IsObjectiveComplete(objective.m_Objective)) { return; }
+
+        ObjectiveProgression progression = new ObjectiveProgression
+        {
+            m_objectiveData = objective,
+            m_isComplete = false
+        };
+
+        CurrentObjectives.Add(progression);
+
+        UIController.Instance.DisplayMessageObjectiveUnlocked(objective);
+    }
     
     public void CompleteObjective(eObjectives objective)
     {
-        for (int i = 0; i < m_objectiveProgressionList.Count; i++)
+        for (int i = 0; i < CurrentObjectives.Count; i++)
         {
-            if (m_objectiveProgressionList[i].m_objective == objective)
+            if (CurrentObjectives[i].m_objectiveData.m_Objective == objective)
             {
-                m_objectiveProgressionList[i].m_isComplete = true;
+                CurrentObjectives[i].m_isComplete = true;
             }
         }
     }
 
     public bool IsObjectiveComplete(eObjectives objective)
     {
-        for (int i = 0; i < m_objectiveProgressionList.Count; i++)
+        for (int i = 0; i < CurrentObjectives.Count; i++)
         {
-            if (m_objectiveProgressionList[i].m_objective == objective)
+            if (CurrentObjectives[i].m_objectiveData.m_Objective == objective)
             {
-                return m_objectiveProgressionList[i].m_isComplete;
+                return CurrentObjectives[i].m_isComplete;
             }
         }
-
-        Debug.LogError("[ERROR]: Objective " + objective + " not registered in DB");
         return false;
     }
 
     public ObjectiveData GetObjectiveData(eObjectives objective)
     {
-        for (int i = 0; i < m_AllObjectivesList.Count; i++)
+        for (int i = 0; i < CurrentObjectives.Count; i++)
         {
-            if (m_AllObjectivesList[i].m_Objective == objective)
+            if (CurrentObjectives[i].m_objectiveData.m_Objective == objective)
             {
-                return m_AllObjectivesList[i];
+                return CurrentObjectives[i].m_objectiveData;
             }
         }
-
-        Debug.LogError("[ERROR]: Objective " + objective + " not registered in DB");
         return null;
-    }
-
-    void Init()
-    {
-        for (int i = 0; i < m_AllObjectivesList.Count; i++)
-        {
-            ObjectiveProgression progression = new ObjectiveProgression
-            {
-                m_objective = m_AllObjectivesList[i].m_Objective,
-                m_isComplete = false
-            };
-
-            m_objectiveProgressionList.Add(progression);
-        }
     }
 }

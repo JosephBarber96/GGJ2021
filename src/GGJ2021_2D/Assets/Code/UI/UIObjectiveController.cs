@@ -28,10 +28,10 @@ public class UIObjectiveController : MonoBehaviour
         m_ParentObj.gameObject.SetActive(true);
         m_isOpen = true;
 
-        for (int i = 0; i < ObjectiveController.Instance.m_AllObjectivesList.Count; i++)
+        for (int i = 0; i < ObjectiveController.Instance.CurrentObjectives.Count; i++)
         {
             UIObjectivePanel panel = GameObject.Instantiate(ObjectivePanelPrefab).GetComponent<UIObjectivePanel>();
-            panel.SetInfo(ObjectiveController.Instance.m_AllObjectivesList[i]);
+            panel.SetInfo(ObjectiveController.Instance.CurrentObjectives[i].m_objectiveData);
 
             panel.transform.SetParent(m_VerticalLayoutGroupTransform.transform, false);
         }

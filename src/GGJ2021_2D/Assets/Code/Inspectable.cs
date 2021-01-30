@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Inspectable : MonoBehaviour, IInteractable
-{   
+{
     [Header("Inspectable")]
     public SpriteRenderer m_inspectIcon;
+    public UnityEvent OnInteract;
 
     private Vector2 m_inspectSpriteStartPos;
     private Vector2 m_inspectSpriteBouncePos;
@@ -26,7 +28,13 @@ public abstract class Inspectable : MonoBehaviour, IInteractable
     //-----------------------
     // Player interact  
 
-    public abstract void Interact(Player player);
+    public virtual void Interact(Player player)
+    {
+        if (OnInteract != null)
+        {
+            OnInteract.Invoke();
+        } 
+    }
 
 
     //-----------------------

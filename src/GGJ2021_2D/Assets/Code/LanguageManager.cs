@@ -59,7 +59,7 @@ public class LanguageManager : MonoBehaviour
                 if (!m_wordProgression[i].m_isUnlocked)
                 {
                     m_wordProgression[i].m_isUnlocked = true;
-                    UIController.Instance.WordLearned(word);
+                    UIController.Instance.DisplayMessageWordLearned(word);
                 }
             }
         }

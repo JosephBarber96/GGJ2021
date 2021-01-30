@@ -11,10 +11,26 @@ public class UIController : MonoBehaviour
         public Sprite m_sprite;
     }
 
-    public class WordUnlockedAnimator
+    public class MessageAnimator
     {
-        public UIWordUnlockedPanel m_panel;
+        public MessagePanel m_panel;
         public float m_elapsedTime;
+    }
+
+    /// <summary>
+    /// This should use abstraction but, jam code lol
+    /// </summary>
+    public class MessageBuffer
+    {
+        public enum eType
+        {
+            NewWord,
+            ObjectiveUnlocked,
+        }
+
+        public eType m_type;
+        public LanguageWord m_word;
+        public ObjectiveData m_objective;
     }
 
     public static UIController Instance { get; private set; }
@@ -43,8 +59,8 @@ public class UIController : MonoBehaviour
     public Sprite m_RedCross;
     public Sprite m_greenTick;
 
-    private List<WordUnlockedAnimator> m_wordUnlockedAnimatorsList = new List<WordUnlockedAnimator>();
-    private List<LanguageWord> m_wordUnlockedBufferList = new List<LanguageWord>();
+    private List<MessageAnimator> m_wordUnlockedAnimatorsList = new List<MessageAnimator>();
+    private List<MessageBuffer> m_messageBufferList = new List<MessageBuffer>();
 
     private void Awake()
     {
@@ -60,7 +76,7 @@ public class UIController : MonoBehaviour
     private void Update()
     {
         // Words learned UI
-        UpdateWordsLearned();
+        UpdateMessages();
     }
 
 
@@ -123,22 +139,35 @@ public class UIController : MonoBehaviour
 
 
     //------------------------------
-    // Unlocking a word
+    // Displaying a message
 
     const float FADE_IN_TIME = 1f;
     const float LERP_TIME = 7f;
     const float FADE_OUT_TIME = 1f;
     const float LEARNED_WORD_BUFFER_TIME = 2.5f;
 
-    public void WordLearned(LanguageWord word)
+    public void DisplayMessageWordLearned(LanguageWord word)
     {
-        m_wordUnlockedBufferList.Add(word);
+        m_messageBufferList.Add(new MessageBuffer
+        {
+            m_type = MessageBuffer.eType.NewWord,
+            m_word = word,
+        });
     }
 
-    public void UpdateWordsLearned()
+    public void DisplayMessageObjectiveUnlocked(ObjectiveData objective)
+    {
+        m_messageBufferList.Add(new MessageBuffer
+        {
+            m_type = MessageBuffer.eType.ObjectiveUnlocked,
+            m_objective = objective,
+        });
+    }
+
+    public void UpdateMessages()
     {
         // Update the buffer 
-        if (m_wordUnlockedBufferList.Count > 0)
+        if (m_messageBufferList.Count > 0)
         {
             bool make = false;
             if (m_wordUnlockedAnimatorsList.Count == 0)
@@ -153,11 +182,11 @@ public class UIController : MonoBehaviour
 
             if (make)
             {
-                UIWordUnlockedPanel unlockedPanel = GameObject.Instantiate(WordUnlockedPrefab).GetComponent<UIWordUnlockedPanel>();
-                unlockedPanel.Setup(m_wordUnlockedBufferList[0]);
+                MessagePanel unlockedPanel = GameObject.Instantiate(WordUnlockedPrefab).GetComponent<MessagePanel>();
+                unlockedPanel.Setup(m_messageBufferList[0]);
                 unlockedPanel.transform.SetParent(m_WordUnlockedPanel.transform, false);
 
-                WordUnlockedAnimator anim = new WordUnlockedAnimator
+                MessageAnimator anim = new MessageAnimator
                 {
                     m_panel = unlockedPanel,
                     m_elapsedTime = 0
@@ -165,7 +194,7 @@ public class UIController : MonoBehaviour
                 anim.m_panel.SetAlpha(0);
                 m_wordUnlockedAnimatorsList.Add(anim);
 
-                m_wordUnlockedBufferList.RemoveAt(0);
+                m_messageBufferList.RemoveAt(0);
             }
         }
 
