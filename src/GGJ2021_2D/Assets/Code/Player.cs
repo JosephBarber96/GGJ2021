@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         var movingRight = _actionManager.IsEnabled(ActionManager.InputAction.MoveRight);
         bool move = (movingForward || movingBackward || movingLeft || movingRight);
 
-        Vector2 moveDelta = Vector2.zero;   
+        Vector2 moveDelta = Vector2.zero;
         if (movingForward)
         {
             moveDelta.y += VerticalSpeed;
