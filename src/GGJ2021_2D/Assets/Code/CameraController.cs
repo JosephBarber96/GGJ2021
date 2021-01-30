@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
@@ -34,7 +32,7 @@ public class CameraController : MonoBehaviour
 
     private void OnSceneLoad(GameController.eScenes scene)
     {
-        if (scene == GameController.eScenes.Tutorial || 
+        if (scene == GameController.eScenes.Tutorial ||
             scene == GameController.eScenes.Game)
         {
             m_player = FindObjectOfType<Player>();

@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 3330338531686905781}
   - component: {fileID: 5290383111972973922}
   - component: {fileID: 1494850639574017885}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,6 +51,7 @@ MonoBehaviour:
   Rb: {fileID: 1494850639574017885}
   VerticalSpeed: 6
   HorizontalSpeed: 6
+  RaycastLength: 1
 --- !u!212 &2622505788231980818
 SpriteRenderer:
   m_ObjectHideFlags: 0

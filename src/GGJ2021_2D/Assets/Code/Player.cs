@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     [Range(1, 50)]
     public float HorizontalSpeed;
 
+    public float RaycastLength;
+
     private int _animXBlendHash, _animYBlendHash;
     private HashSet<GameObject> _interactableObjects;
     private ActionManager _actionManager;
@@ -20,8 +22,7 @@ public class Player : MonoBehaviour
     private Vector2 m_targetBlend;
 
     // Movement
-    public Vector2 Position { get { return m_currentPos; } }
-    private Vector2 m_currentPos;
+    public Vector2 Position { get; private set; }
 
     void Awake()
     {
@@ -99,11 +100,17 @@ public class Player : MonoBehaviour
         }
 
         moveDelta.Normalize();
-        Vector2 newPos = Rb.position;
-        newPos.x += moveDelta.x * HorizontalSpeed * Time.fixedDeltaTime;
-        newPos.y += moveDelta.y * VerticalSpeed * Time.fixedDeltaTime;
-        Rb.MovePosition(newPos);
-        m_currentPos = newPos;
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, moveDelta, RaycastLength, ~LayerMask.GetMask("Player"));
+
+        if (hit.collider == null)
+        {
+            Vector2 newPos = Rb.position;
+            newPos.x += moveDelta.x * HorizontalSpeed * Time.fixedDeltaTime;
+            newPos.y += moveDelta.y * VerticalSpeed * Time.fixedDeltaTime;
+            Rb.MovePosition(newPos);
+            Position = newPos;
+        }
 
         // Animator
         PlayerAnimator.SetFloat(_animXBlendHash, m_currentBlend.x);
