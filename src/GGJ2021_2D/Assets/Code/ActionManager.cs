@@ -42,6 +42,6 @@ public class ActionManager : MonoBehaviour
         ActionStates[InputAction.MoveBackward] = Input.GetKey(KeyCode.S);
         ActionStates[InputAction.MoveLeft] = Input.GetKey(KeyCode.A);
         ActionStates[InputAction.MoveRight] = Input.GetKey(KeyCode.D);
-        ActionStates[InputAction.Interact] = Input.GetKey(KeyCode.E);
+        ActionStates[InputAction.Interact] = Input.GetKeyDown(KeyCode.E);
     }
 }

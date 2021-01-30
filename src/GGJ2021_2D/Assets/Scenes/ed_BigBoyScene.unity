@@ -247,6 +247,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b08e03ff7289f34bb5a58d17324205e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1452912947 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8898780203637018640, guid: 2314ee47ef654d542b9b9db4341adcaf,
+    type: 3}
+  m_PrefabInstance: {fileID: 3534647660375519073}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1452912948
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452912947}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1531596281
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,6 +367,16 @@ PrefabInstance:
       propertyPath: ActionManager
       value: 
       objectReference: {fileID: 881131116}
+    - target: {fileID: 270810983910315944, guid: 2314ee47ef654d542b9b9db4341adcaf,
+        type: 3}
+      propertyPath: VerticalSpeed
+      value: 7.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 270810983910315944, guid: 2314ee47ef654d542b9b9db4341adcaf,
+        type: 3}
+      propertyPath: HorizontalSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1455330382397153822, guid: 2314ee47ef654d542b9b9db4341adcaf,
         type: 3}
       propertyPath: m_RootOrder
@@ -394,6 +431,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2622505788231980818, guid: 2314ee47ef654d542b9b9db4341adcaf,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2622505788231980818, guid: 2314ee47ef654d542b9b9db4341adcaf,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2622505788231980818, guid: 2314ee47ef654d542b9b9db4341adcaf,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -246733235
       objectReference: {fileID: 0}
     - target: {fileID: 8898780203637018640, guid: 2314ee47ef654d542b9b9db4341adcaf,
         type: 3}
