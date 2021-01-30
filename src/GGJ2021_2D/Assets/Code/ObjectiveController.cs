@@ -44,7 +44,7 @@ public class ObjectiveController : MonoBehaviour
 
     public void UnlockObjective(ObjectiveData objective)
     {   
-        if (IsObjectiveComplete(objective.m_Objective)) { return; }
+        if (IsObjectiveUnlocked(objective.m_Objective)) { return; }
 
         ObjectiveProgression progression = new ObjectiveProgression
         {
@@ -75,6 +75,18 @@ public class ObjectiveController : MonoBehaviour
             if (CurrentObjectives[i].m_objectiveData.m_Objective == objective)
             {
                 return CurrentObjectives[i].m_isComplete;
+            }
+        }
+        return false;
+    }
+
+    public bool IsObjectiveUnlocked(eObjectives objective)
+    {
+        for (int i = 0; i < CurrentObjectives.Count; i++)
+        {
+            if (CurrentObjectives[i].m_objectiveData.m_Objective == objective)
+            {
+                return true;
             }
         }
         return false;

@@ -99,18 +99,33 @@ public class UIController : MonoBehaviour
 
     public void InspectAlienItem(AlienInspectable inspectable)
     {
-        CurrentInspectable = inspectable;
-        m_inspectPanel.DisplayAlienInfo(inspectable.Information);
+        if (CurrentInspectable == inspectable)
+        {
+            HideInspect();
+        }
+        else
+        {
+            CurrentInspectable = inspectable;
+            m_inspectPanel.DisplayAlienInfo(inspectable.Information);
+        }
     }
 
     public void InspectEnglishItem(EnglishInspectable inspectable)
     {
-        CurrentInspectable = inspectable;
-        m_inspectPanel.DisplayEnglishInfo(inspectable.Information);
+        if (CurrentInspectable == inspectable)
+        {
+            HideInspect();
+        }
+        else
+        {
+            CurrentInspectable = inspectable;
+            m_inspectPanel.DisplayEnglishInfo(inspectable.Information);
+        }
     }
 
     public void HideInspect()
     {
+        CurrentInspectable = null;
         m_inspectPanel.HideInfo();
     }
 
