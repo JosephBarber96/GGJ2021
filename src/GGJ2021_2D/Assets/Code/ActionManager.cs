@@ -17,7 +17,6 @@ public class ActionManager : MonoBehaviour
         }
 
         _instance = this;
-        DontDestroyOnLoad(this.gameObject);
     }
     #endregion
 
