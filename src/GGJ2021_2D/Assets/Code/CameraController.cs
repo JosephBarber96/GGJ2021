@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour
     {
         m_state = eState.Off;
 
-        OnSceneLoad(GameController.eScenes.Game);
+        // OnSceneLoad(GameController.eScenes.Game);
     }
 
     private void OnEnable()
