@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4532210103953106882}
   - component: {fileID: 519905750966937927}
   - component: {fileID: 28370617}
+  - component: {fileID: 2119243666628678513}
   m_Layer: 0
   m_Name: Brazier
   m_TagString: Untagged
@@ -4863,3 +4864,19 @@ MonoBehaviour:
   Light: {fileID: 5327095880275837126}
   VibrationAmount: 1
   VibrationTime: 2
+--- !u!58 &2119243666628678513
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3008602984053855744}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.51
