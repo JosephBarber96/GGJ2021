@@ -280,10 +280,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2334052910027028463}
     m_Modifications:
+    - target: {fileID: 36459188747355507, guid: 14ab1587847e4a84788a350cfbb997f5,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5816e6c1eb025384d8726bc6a9af6e1c,
+        type: 3}
     - target: {fileID: 463657433580448191, guid: 14ab1587847e4a84788a350cfbb997f5,
         type: 3}
       propertyPath: m_Name
       value: UIController
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369743229605172511, guid: 14ab1587847e4a84788a350cfbb997f5,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.16981131
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369743229605172511, guid: 14ab1587847e4a84788a350cfbb997f5,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.16981131
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369743229605172511, guid: 14ab1587847e4a84788a350cfbb997f5,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.16981131
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369743229605172511, guid: 14ab1587847e4a84788a350cfbb997f5,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4281019179
       objectReference: {fileID: 0}
     - target: {fileID: 2282042560513878997, guid: 14ab1587847e4a84788a350cfbb997f5,
         type: 3}
@@ -346,6 +372,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2720580652325436156, guid: 14ab1587847e4a84788a350cfbb997f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7041180105119119573, guid: 14ab1587847e4a84788a350cfbb997f5,
         type: 3}
       propertyPath: m_IsActive
       value: 0

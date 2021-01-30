@@ -13,7 +13,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_inspectIcon: {fileID: 3970875227188913428}
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6473574992435668614}
+        m_MethodName: Unlock
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Information: {fileID: 11400000, guid: 3b076e8e149c2ab45a5418bb11bae3f7, type: 2}
+--- !u!114 &6473574992435668614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7928300399873820159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b261f7335506ab1438cedc57a99548c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ObjectivesToUnlock:
+  - {fileID: 11400000, guid: 1c633a9b11c6f4c4ba20bdecc24a63a4, type: 2}
+  - {fileID: 11400000, guid: b8d9e3acc0134af40a6a60cc682296c2, type: 2}
 --- !u!1001 &4121657349293261616
 PrefabInstance:
   m_ObjectHideFlags: 0
