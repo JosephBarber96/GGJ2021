@@ -15,4 +15,4 @@ MonoBehaviour:
   m_Objective: 1
   m_ObjectiveTitle: Obtain fuel
   m_ObjectiveDescription: 'Speak to the Aliens to find some fuel! '
-  m_ObjectiveIcon: {fileID: 21300000, guid: 00e004f30a9c7ab46b91e2c30eacd686, type: 3}
+  m_ObjectiveIcon: {fileID: 21300000, guid: 49898797941654941b098b37939e740e, type: 3}
