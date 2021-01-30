@@ -11,6 +11,12 @@ public class UIController : MonoBehaviour
         public Sprite m_sprite;
     }
 
+    public class WordUnlockedAnimator
+    {
+        public UIWordUnlockedPanel m_panel;
+        public float m_elapsedTime;
+    }
+
     public static UIController Instance { get; private set; }
 
     [Header("Letter sprites")]
@@ -21,13 +27,31 @@ public class UIController : MonoBehaviour
     [Header("NPC Conversation")]
     public UIConversationController m_conversationController;
 
+    [Header("Word Unlocked")]
+    public Transform m_WordUnlockedPanel;
+    public GameObject WordUnlockedPrefab;
+    public RectTransform m_wordUnlockedLowerAnchor;
+    public RectTransform m_wordUnlockedHigherAnchor;
 
-
+    private List<WordUnlockedAnimator> m_wordUnlockedAnimatorsList = new List<WordUnlockedAnimator>();
+    private List<LanguageWord> m_wordUnlockedBufferList = new List<LanguageWord>();
 
     private void Awake()
     {
         Instance = this;
     }
+
+    private void Update()
+    {
+
+        // Words learned UI
+        UpdateWordsLearned();
+    }
+
+
+
+    //------------------------------
+    // Conversation
 
     public void StartConversation(NPC npc)
     {
@@ -35,10 +59,109 @@ public class UIController : MonoBehaviour
     }
 
 
+        
+
+    //------------------------------
+    // Unlocking a word
+
+    public void WordLearned(LanguageWord word)
+    {
+        m_wordUnlockedBufferList.Add(word);
+    }
+
+    public void UpdateWordsLearned()
+    {
+        // Update the buffer 
+        if (m_wordUnlockedBufferList.Count > 0)
+        {
+            bool make = false;
+            if (m_wordUnlockedAnimatorsList.Count == 0)
+            {
+                make = true;
+            }
+            else
+            {
+                const float BUFFER_TIME = 1f;
+                float lastT = m_wordUnlockedAnimatorsList[m_wordUnlockedAnimatorsList.Count - 1].m_elapsedTime;
+                make = lastT > BUFFER_TIME;
+            }
+
+            if (make)
+            {
+                UIWordUnlockedPanel unlockedPanel = GameObject.Instantiate(WordUnlockedPrefab).GetComponent<UIWordUnlockedPanel>();
+                unlockedPanel.Setup(m_wordUnlockedBufferList[0]);
+                unlockedPanel.transform.SetParent(m_WordUnlockedPanel.transform, false);
+
+                WordUnlockedAnimator anim = new WordUnlockedAnimator
+                {
+                    m_panel = unlockedPanel,
+                    m_elapsedTime = 0
+                };
+                anim.m_panel.SetAlpha(0);
+                m_wordUnlockedAnimatorsList.Add(anim);
+
+                m_wordUnlockedBufferList.RemoveAt(0);
+            }
+        }
+
+
+        // Lerp the UI elements
+
+        const float FADE_IN_TIME = 1f;
+        const float LERP_TIME = 3f;
+        const float FADE_OUT_TIME = 1f;
+
+        for (int i = m_wordUnlockedAnimatorsList.Count - 1; i >= 0; i--)
+        {
+            bool remove = false;
+
+            m_wordUnlockedAnimatorsList[i].m_elapsedTime += Time.deltaTime;
+            float t = m_wordUnlockedAnimatorsList[i].m_elapsedTime;
+
+            float normalized = t / LERP_TIME;
+
+            // Fading in
+            if (t < FADE_IN_TIME)
+            {
+                float normalizedFadeInTime = t / FADE_IN_TIME;
+                m_wordUnlockedAnimatorsList[i].m_panel.SetAlpha(normalizedFadeInTime);
+                Debug.Log("setting alpha UP: " + normalizedFadeInTime);
+            }
+            // Fading out 
+            else if (t > (LERP_TIME - FADE_OUT_TIME))
+            {
+                float normalizedFadeOutTime = t - (LERP_TIME - FADE_OUT_TIME);
+                m_wordUnlockedAnimatorsList[i].m_panel.SetAlpha(1 - normalizedFadeOutTime);
+                Debug.Log("setting alpha DOWN: " + normalizedFadeOutTime);
+            }
+
+            if (normalized >= 1)
+            {
+                normalized = 1;
+                remove = true;
+            }
+
+
+            m_wordUnlockedAnimatorsList[i].m_panel.m_rectTransform.anchoredPosition = 
+                Vector2.Lerp(
+                m_wordUnlockedLowerAnchor.anchoredPosition,
+                m_wordUnlockedHigherAnchor.anchoredPosition,
+                normalized);
+
+            if (remove)
+            {
+                GameObject.Destroy(m_wordUnlockedAnimatorsList[i].m_panel.gameObject);
+                m_wordUnlockedAnimatorsList.RemoveAt(i);
+                Debug.Log("deleted it");
+            }
+        }
+    }
+
+
 
 
     //------------------------------
-    // 
+    // Utils
 
     public Sprite GetSpriteForLetter(char letter)
     {

@@ -46,12 +46,30 @@ public class LanguageManager : MonoBehaviour
 
     public void LearnWord(LanguageWord word)
     {
-
+        for (int i = 0; i < m_wordProgression.Count; i++)
+        {
+            if (m_wordProgression[i].m_word == word)
+            {
+                if (!m_wordProgression[i].m_isUnlocked)
+                {
+                    m_wordProgression[i].m_isUnlocked = true;
+                    UIController.Instance.WordLearned(word);
+                }
+            }
+        }
     }
 
-    public void IsWordLearned(LanguageWord word)
+    public bool IsWordLearned(LanguageWord word)
     {
-
+        for (int i = 0; i < m_wordProgression.Count; i++)
+        {
+            if (m_wordProgression[i].m_word == word)
+            {
+                return (m_wordProgression[i].m_isUnlocked);
+            }
+        }
+        Debug.LogError("ERROR: Word not in DB tried to be learned. Word not in dictionary.");
+        return false;
     }
 
 

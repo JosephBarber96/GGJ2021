@@ -125,6 +125,12 @@ public class UIConversationController : MonoBehaviour
                         wordPanel.Setup(word.m_Word);
                         wordPanel.transform.SetParent(m_NPCSpeechBubble.transform, false);
                         m_currentSentence.Add(wordPanel);
+
+                        // Unlock the word 
+                        if (!LanguageManager.Instance.IsWordLearned(word))
+                        {
+                            LanguageManager.Instance.LearnWord(word);
+                        }
                     }
                 }
                 break;

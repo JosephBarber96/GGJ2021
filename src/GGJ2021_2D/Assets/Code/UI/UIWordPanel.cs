@@ -26,7 +26,7 @@ public class UIWordPanel : MonoBehaviour
     [SerializeField]
     private List<LetterAnimator> m_sentence = new List<LetterAnimator>();
 
-    public void Setup(string word)
+    public void Setup(string word)  
     {
         // Set english text
         m_englishText.text = word;
