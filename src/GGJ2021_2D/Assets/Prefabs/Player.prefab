@@ -51,7 +51,7 @@ MonoBehaviour:
   Rb: {fileID: 1494850639574017885}
   VerticalSpeed: 4
   HorizontalSpeed: 4
-  RaycastLength: 1
+  RaycastLength: 0.5
 --- !u!212 &2622505788231980818
 SpriteRenderer:
   m_ObjectHideFlags: 0
