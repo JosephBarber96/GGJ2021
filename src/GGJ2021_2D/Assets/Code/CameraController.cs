@@ -15,9 +15,13 @@ public class CameraController : MonoBehaviour
     private Vector2 _cameraVelocity = Vector2.zero;
     private eState m_state;
 
+    private CameraBounds m_camerabounds;
+
     private void Awake()
     {
         m_state = eState.Off;
+
+        OnSceneLoad(GameController.eScenes.Game);
     }
 
     private void OnEnable()
@@ -36,6 +40,7 @@ public class CameraController : MonoBehaviour
             scene == GameController.eScenes.Game)
         {
             m_player = FindObjectOfType<Player>();
+            m_camerabounds = FindObjectOfType<CameraBounds>();
             m_camera = Camera.main;
             m_state = eState.On;
         }
@@ -48,11 +53,16 @@ public class CameraController : MonoBehaviour
             float z = m_camera.transform.position.z;
             Vector3 thisPos = m_camera.transform.position;
 
-            m_camera.transform.position = Vector3.Lerp(
+            Vector3 lerpPosition = Vector3.Lerp(
                 new Vector3(thisPos.x, thisPos.y, z),
                 new Vector3(m_player.Position.x, m_player.Position.y, z),
                 Time.deltaTime * m_CameraSmoothScalar
                 );
+
+            lerpPosition.x = Mathf.Clamp(lerpPosition.x, m_camerabounds.minX, m_camerabounds.maxX);
+            lerpPosition.y = Mathf.Clamp(lerpPosition.y, m_camerabounds.minY, m_camerabounds.maxY);
+
+            m_camera.transform.position = lerpPosition;
         }
     }
 }
