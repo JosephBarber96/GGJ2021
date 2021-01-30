@@ -6,5 +6,5 @@ public class EnglishInspectableInformation : ScriptableObject
 {
     public Sprite InspectIcon;
     public string InspectName;
-    public string Description;
+    public string InspectDescription;
 }

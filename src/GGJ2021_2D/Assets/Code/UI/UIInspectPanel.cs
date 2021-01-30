@@ -1,19 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIInspectPanel : MonoBehaviour
 {
     public RectTransform m_InspectBubbleRect;
-    public Text m_inspectText;
+
+    public TextMeshProUGUI m_inspectTitle;
+    public TextMeshProUGUI m_inspectDescription;
     public Image m_inspectImage;
+
 
     public void DisplayAlienInfo(AlienInspectableInformation info)
     {
         m_InspectBubbleRect.gameObject.SetActive(true);
 
-        m_inspectText.text = info.InspectName.m_Word;
+        m_inspectTitle.text = info.InspectName.m_Word;
+        //m_inspectDescription.text = info.InspectName.m_Word;
+
         m_inspectImage.sprite = info.InspectIcon;
     }
 
@@ -21,10 +25,10 @@ public class UIInspectPanel : MonoBehaviour
     {
         m_InspectBubbleRect.gameObject.SetActive(true);
 
-        m_inspectText.text = info.InspectName;
-        m_inspectImage.sprite = info.InspectIcon;
+        m_inspectTitle.text = info.InspectName;
+        m_inspectDescription.text = info.InspectDescription;
 
-        //info.Description
+        m_inspectImage.sprite = info.InspectIcon;
     }
 
     public void HideInfo()
