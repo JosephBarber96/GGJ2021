@@ -11,7 +11,8 @@ public class NPC : MonoBehaviour
     }
 
     [Header("Sentence")]
-    public NPCSentence m_Sentence;
+    public string m_chatSentence;
+    public List<LanguageWord> m_unlockedWords;
     public Sprite m_ChatIcon;
 
     public void OnMouseOver()
@@ -19,6 +20,13 @@ public class NPC : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             UIController.Instance.StartConversation(this);
+
+            // Unlock the words
+            for (int i = 0; i < m_unlockedWords.Count; i++)
+            {
+                LanguageManager.Instance.LearnWord(m_unlockedWords[i]);
+            }
+
         }
     }
 }

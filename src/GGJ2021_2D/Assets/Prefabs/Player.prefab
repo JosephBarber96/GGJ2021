@@ -49,8 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerAnimator: {fileID: 3330338531686905781}
   Rb: {fileID: 1494850639574017885}
-  VerticalSpeed: 6
-  HorizontalSpeed: 6
+  VerticalSpeed: 4
+  HorizontalSpeed: 4
   RaycastLength: 1
 --- !u!212 &2622505788231980818
 SpriteRenderer:
