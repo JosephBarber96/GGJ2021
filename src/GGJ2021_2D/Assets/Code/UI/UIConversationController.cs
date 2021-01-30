@@ -117,19 +117,15 @@ public class UIConversationController : MonoBehaviour
                 break;
             case eState.TransitioningSentenceOn:
                 {
+                    string[] words = m_currentNpc.m_chatSentence.Split(' ');
+
                     // For each word
-                    foreach (LanguageWord word in m_currentNpc.m_Sentence.m_Words)
+                    foreach (string word in words)
                     {
                         UIWordPanel wordPanel = GameObject.Instantiate(UIWordPanelPrefab).GetComponent<UIWordPanel>();
-                        wordPanel.Setup(word.m_Word);
+                        wordPanel.Setup(word);
                         wordPanel.transform.SetParent(m_wordPanelParent.transform, false);
                         m_currentSentence.Add(wordPanel);
-
-                        // Unlock the word 
-                        if (!LanguageManager.Instance.IsWordLearned(word))
-                        {
-                            LanguageManager.Instance.LearnWord(word);
-                        }
                     }
                 }
                 break;
@@ -228,7 +224,7 @@ public class UIConversationController : MonoBehaviour
     {
         if (m_currentSentence.Count == 0) { return; }
 
-        int childCount = m_NPCSpeechBubbleTransform.transform.childCount;
+        int childCount = m_wordPanelParent.transform.childCount;
         for (int i = childCount - 1; i >= 0; i--)
         {
             GameObject.Destroy(m_wordPanelParent.transform.GetChild(i).gameObject);
