@@ -59,7 +59,7 @@ public class LanguageManager : MonoBehaviour
 
     //---------------------------
     // Private
-    
+
     private void Init()
     {
         foreach (LanguageWord word in m_Dictionary.Words)
