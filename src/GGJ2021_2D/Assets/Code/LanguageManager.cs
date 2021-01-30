@@ -74,7 +74,20 @@ public class LanguageManager : MonoBehaviour
                 return (m_wordProgression[i].m_isUnlocked);
             }
         }
-        Debug.LogError("ERROR: Word not in DB tried to be learned. Word not in dictionary.");
+        return false;
+    }
+
+    public bool IsWordLearned(string word)
+    {
+        string toLower = word.ToLower();
+
+        for (int i = 0; i < m_wordProgression.Count; i++)
+        {
+            if (m_wordProgression[i].m_word.m_Word.ToLower().Equals(toLower))
+            {
+                return (m_wordProgression[i].m_isUnlocked);
+            }
+        }
         return false;
     }
 

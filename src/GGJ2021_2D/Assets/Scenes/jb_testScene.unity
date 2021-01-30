@@ -135,13 +135,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5790015487580607521, guid: c2032a0a4c4c02c4393d272a51ae0c05,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5790015487580607521, guid: c2032a0a4c4c02c4393d272a51ae0c05,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5790015487580607521, guid: c2032a0a4c4c02c4393d272a51ae0c05,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5790015487580607521, guid: c2032a0a4c4c02c4393d272a51ae0c05,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5790015487580607521, guid: c2032a0a4c4c02c4393d272a51ae0c05,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 5790015487580607521, guid: c2032a0a4c4c02c4393d272a51ae0c05,
         type: 3}
@@ -156,17 +171,17 @@ PrefabInstance:
     - target: {fileID: 5790015487580607521, guid: c2032a0a4c4c02c4393d272a51ae0c05,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5790015487580607521, guid: c2032a0a4c4c02c4393d272a51ae0c05,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5790015487580607521, guid: c2032a0a4c4c02c4393d272a51ae0c05,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5790015487580607521, guid: c2032a0a4c4c02c4393d272a51ae0c05,
         type: 3}
@@ -185,15 +200,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7558484134250277221, guid: c2032a0a4c4c02c4393d272a51ae0c05,
         type: 3}
-      propertyPath: m_ChatIcon
-      value: 
-      objectReference: {fileID: 21300000, guid: 00e004f30a9c7ab46b91e2c30eacd686,
+      propertyPath: m_chatSentence
+      value: your ship is broken
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558484134250277221, guid: c2032a0a4c4c02c4393d272a51ae0c05,
         type: 3}
+      propertyPath: m_unlockedWords.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7558484134250277221, guid: c2032a0a4c4c02c4393d272a51ae0c05,
         type: 3}
       propertyPath: m_Sentence.m_Words.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7558484134250277221, guid: c2032a0a4c4c02c4393d272a51ae0c05,
+        type: 3}
+      propertyPath: m_unlockedWords.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 174bb9eebb9f09f4aba50ad1ad990494,
+        type: 2}
+    - target: {fileID: 7558484134250277221, guid: c2032a0a4c4c02c4393d272a51ae0c05,
+        type: 3}
+      propertyPath: m_unlockedWords.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 37310148190f9fc488073d87d57c053a,
+        type: 2}
     - target: {fileID: 7558484134250277221, guid: c2032a0a4c4c02c4393d272a51ae0c05,
         type: 3}
       propertyPath: m_Sentence.m_Words.Array.data[0]

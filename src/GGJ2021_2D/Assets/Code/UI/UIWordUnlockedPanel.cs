@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIWordUnlockedPanel : MonoBehaviour
 {
     public RectTransform m_rectTransform;
-    public Text m_text;
+    public TextMeshProUGUI m_text;
     public Image m_panelImage;
 
     public void Setup(LanguageWord word)

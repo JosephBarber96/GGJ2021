@@ -125,6 +125,11 @@ public class UIController : MonoBehaviour
     //------------------------------
     // Unlocking a word
 
+    const float FADE_IN_TIME = 1f;
+    const float LERP_TIME = 7f;
+    const float FADE_OUT_TIME = 1f;
+    const float LEARNED_WORD_BUFFER_TIME = 2.5f;
+
     public void WordLearned(LanguageWord word)
     {
         m_wordUnlockedBufferList.Add(word);
@@ -142,9 +147,8 @@ public class UIController : MonoBehaviour
             }
             else
             {
-                const float BUFFER_TIME = 1f;
                 float lastT = m_wordUnlockedAnimatorsList[m_wordUnlockedAnimatorsList.Count - 1].m_elapsedTime;
-                make = lastT > BUFFER_TIME;
+                make = lastT > LEARNED_WORD_BUFFER_TIME;
             }
 
             if (make)
@@ -167,10 +171,6 @@ public class UIController : MonoBehaviour
 
 
         // Lerp the UI elements
-
-        const float FADE_IN_TIME = 1f;
-        const float LERP_TIME = 3f;
-        const float FADE_OUT_TIME = 1f;
 
         for (int i = m_wordUnlockedAnimatorsList.Count - 1; i >= 0; i--)
         {
