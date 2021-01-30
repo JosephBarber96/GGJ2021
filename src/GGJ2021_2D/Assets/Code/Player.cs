@@ -5,18 +5,19 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Animator PlayerAnimator;
-    public ActionManager ActionManager;
+    public Rigidbody2D Rb;
 
     [Range(1, 50)]
     public float VerticalSpeed;
     [Range(1, 50)]
     public float HorizontalSpeed;
 
-    private int _movingForwardHash;
-    private int _movingBackwardHash;
-    private int _movingLeftHash;
-    private int _movingRightHash;
+    private int _animXBlendHash, _animYBlendHash;
     private HashSet<GameObject> _interactableObjects;
+    private ActionManager _actionManager;
+
+    private Vector2 m_currentBlend;
+    private Vector2 m_targetBlend;
 
     void Awake()
     {
@@ -26,46 +27,79 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _movingForwardHash = Animator.StringToHash("MovingForward");
-        _movingBackwardHash = Animator.StringToHash("MovingBackward");
-        _movingLeftHash = Animator.StringToHash("MovingLeft");
-        _movingRightHash = Animator.StringToHash("MovingRight");
+        _animXBlendHash = Animator.StringToHash("xMove");
+        _animYBlendHash = Animator.StringToHash("yMove");
+        _actionManager = ActionManager.Instance;
+
+        m_currentBlend = Vector2.zero;
+        m_targetBlend = Vector2.zero;
     }
 
     // Update is called once per frame
     void Update()
     {
-        var movingForward = ActionManager.IsEnabled(ActionManager.InputAction.MoveForward);
-        var movingBackward = ActionManager.IsEnabled(ActionManager.InputAction.MoveBackward);
-        var movingLeft = ActionManager.IsEnabled(ActionManager.InputAction.MoveLeft);
-        var movingRight = ActionManager.IsEnabled(ActionManager.InputAction.MoveRight);
+        UpdateMovement();
 
-        PlayerAnimator.SetBool(_movingForwardHash, movingForward);
-        PlayerAnimator.SetBool(_movingBackwardHash, movingBackward);
-        PlayerAnimator.SetBool(_movingLeftHash, movingLeft);
-        PlayerAnimator.SetBool(_movingRightHash, movingRight);
-
-        if (movingForward)
-        {
-            transform.Translate(new Vector2(0, VerticalSpeed * Time.deltaTime));
-        }
-        if (movingBackward)
-        {
-            transform.Translate(new Vector2(0, -VerticalSpeed * Time.deltaTime));
-        }
-        if (movingLeft)
-        {
-            transform.Translate(new Vector2(-HorizontalSpeed * Time.deltaTime, 0));
-        }
-        if (movingRight)
-        {
-            transform.Translate(new Vector2(HorizontalSpeed * Time.deltaTime, 0));
-        }
-
-        if (ActionManager.IsEnabled(ActionManager.InputAction.Interact))
+        if (_actionManager.IsEnabled(ActionManager.InputAction.Interact))
         {
             Interact();
         }
+    }
+
+    private void UpdateMovement()
+    {
+        var movingForward = _actionManager.IsEnabled(ActionManager.InputAction.MoveForward);
+        var movingBackward = _actionManager.IsEnabled(ActionManager.InputAction.MoveBackward);
+        var movingLeft = _actionManager.IsEnabled(ActionManager.InputAction.MoveLeft);
+        var movingRight = _actionManager.IsEnabled(ActionManager.InputAction.MoveRight);
+        bool move = (movingForward || movingBackward || movingLeft || movingRight);
+
+        Vector2 moveDelta = Vector2.zero;   
+        if (movingForward)
+        {
+            moveDelta.y += VerticalSpeed;
+            m_targetBlend.y = 1;
+        }
+        else if (movingBackward)
+        {
+            moveDelta.y += -VerticalSpeed;
+            m_targetBlend.y = -1;
+        }
+        else
+        {
+            m_targetBlend.y = 0;
+        }
+
+        if (movingRight)
+        {
+            moveDelta.x += HorizontalSpeed;
+            m_targetBlend.x = 1;
+        }
+        else if (movingLeft)
+        {
+            moveDelta.x += -HorizontalSpeed;
+            m_targetBlend.x = -1;
+        }
+        else
+        {
+            m_targetBlend.x = 0;
+        }
+
+        if (move)
+        {
+            const float MAGIC_LERP_NUMBER = 16;
+            m_currentBlend = Vector2.Lerp(m_currentBlend, m_targetBlend, Time.deltaTime * MAGIC_LERP_NUMBER);
+        }
+
+        moveDelta.Normalize();
+        Vector2 newPos = Rb.position;
+        newPos.x += moveDelta.x * HorizontalSpeed * Time.deltaTime;
+        newPos.y += moveDelta.y * VerticalSpeed * Time.deltaTime;
+        Rb.MovePosition(newPos);
+
+        // Animator
+        PlayerAnimator.SetFloat(_animXBlendHash, m_currentBlend.x);
+        PlayerAnimator.SetFloat(_animYBlendHash, m_currentBlend.y);
     }
 
     void OnTriggerEnter2D(Collider2D collider)

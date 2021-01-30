@@ -7,7 +7,7 @@ public class ActionManager : MonoBehaviour
 {
     #region Singleton
     private static ActionManager _instance;
-    private static ActionManager Instance => _instance;
+    public static ActionManager Instance => _instance;
     private void Awake()
     {
         if (_instance != null && _instance != this)
