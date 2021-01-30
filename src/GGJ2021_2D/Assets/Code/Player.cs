@@ -6,7 +6,6 @@ public class Player : MonoBehaviour
 {
     public Animator PlayerAnimator;
     public ActionManager ActionManager;
-    public Collider2D InteractTriggerCollider;
 
     [Range(1, 50)]
     public float VerticalSpeed;
@@ -17,7 +16,7 @@ public class Player : MonoBehaviour
     private int _movingBackwardHash;
     private int _movingLeftHash;
     private int _movingRightHash;
-    public HashSet<GameObject> _interactableObjects;
+    private HashSet<GameObject> _interactableObjects;
 
     void Awake()
     {
