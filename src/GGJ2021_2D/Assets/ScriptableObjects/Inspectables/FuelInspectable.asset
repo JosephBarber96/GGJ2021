@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da2c285a71b7f3d4786f8369a42cf180, type: 3}
-  m_Name: SignAlienInspectable
+  m_Script: {fileID: 11500000, guid: 50a98d12261c5f94bbb7bfd22d0f097f, type: 3}
+  m_Name: FuelInspectable
   m_EditorClassIdentifier: 
-  InspectIcon: {fileID: 21300000, guid: d827797f960649c42887c0b7b5ca952c, type: 3}
-  InspectName: Sign
-  InspectText: Free fuel below
+  InspectIcon: {fileID: 21300000, guid: 49898797941654941b098b37939e740e, type: 3}
+  InspectName: Fuel
+  InspectDescription: Some spaceship fuel...

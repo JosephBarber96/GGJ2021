@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ObjectiveController : MonoBehaviour
@@ -57,14 +58,15 @@ public class ObjectiveController : MonoBehaviour
         UIController.Instance.DisplayMessageObjectiveUnlocked(objective);
     }
 
-    public void CompleteObjective(eObjectives objective)
+    public void CompleteObjective(ObjectiveData objective)
     {
-        for (int i = 0; i < CurrentObjectives.Count; i++)
+        var currentObjective =
+            CurrentObjectives.FirstOrDefault(x => x.m_objectiveData.m_Objective == objective.m_Objective);
+
+        if (currentObjective != null)
         {
-            if (CurrentObjectives[i].m_objectiveData.m_Objective == objective)
-            {
-                CurrentObjectives[i].m_isComplete = true;
-            }
+            currentObjective.m_isComplete = true;
+            UIController.Instance.DisplayMessageObjectiveCompleted(objective);
         }
     }
 

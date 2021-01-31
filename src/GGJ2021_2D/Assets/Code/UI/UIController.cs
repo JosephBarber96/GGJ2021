@@ -27,13 +27,14 @@ public class UIController : MonoBehaviour
         {
             NewWord,
             ObjectiveUnlocked,
+            ObjectiveCompleted
         }
 
         public eType m_type;
         public LanguageWord m_word;
         public ObjectiveData m_objective;
     }
-    
+
     public enum eFadeToBlackState
     {
         None,
@@ -130,7 +131,7 @@ public class UIController : MonoBehaviour
     //------------------------------
     // Inspect
 
-    public Inspectable CurrentInspectable { get; private set;}
+    public Inspectable CurrentInspectable { get; private set; }
 
     public void InspectAlienItem(AlienInspectable inspectable)
     {
@@ -214,12 +215,21 @@ public class UIController : MonoBehaviour
         });
     }
 
+    public void DisplayMessageObjectiveCompleted(ObjectiveData objective)
+    {
+        m_messageBufferList.Add(new MessageBuffer
+        {
+            m_type = MessageBuffer.eType.ObjectiveCompleted,
+            m_objective = objective
+        });
+    }
+
     public void UpdateMessages()
     {
         // Update the buffer 
         if (m_messageBufferList.Count > 0)
         {
-            bool make = false;
+            bool make;
             if (m_wordUnlockedAnimatorsList.Count == 0)
             {
                 make = true;
@@ -280,7 +290,7 @@ public class UIController : MonoBehaviour
             }
 
 
-            m_wordUnlockedAnimatorsList[i].m_panel.m_rectTransform.anchoredPosition = 
+            m_wordUnlockedAnimatorsList[i].m_panel.m_rectTransform.anchoredPosition =
                 Vector2.Lerp(
                 m_wordUnlockedLowerAnchor.anchoredPosition,
                 m_wordUnlockedHigherAnchor.anchoredPosition,

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -19,7 +17,11 @@ public class MessagePanel : MonoBehaviour
         else if (msg.m_type == UIController.MessageBuffer.eType.ObjectiveUnlocked)
         {
             m_text.text = "New objective: \"" + msg.m_objective.m_ObjectiveTitle + "\"";
-        }     
+        }
+        else if (msg.m_type == UIController.MessageBuffer.eType.ObjectiveCompleted)
+        {
+            m_text.text = $"'{msg.m_objective.m_ObjectiveTitle}' Completed!";
+        }
     }
 
     public void SetAlpha(float alpha)
