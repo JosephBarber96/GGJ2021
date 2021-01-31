@@ -54,7 +54,6 @@ public class ObjectiveController : MonoBehaviour
         };
 
         CurrentObjectives.Add(progression);
-
         UIController.Instance.DisplayMessageObjectiveUnlocked(objective);
     }
 

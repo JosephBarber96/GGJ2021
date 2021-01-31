@@ -71,6 +71,10 @@ public class UIController : MonoBehaviour
     [Header("Fade to black")]
     public Image m_fadeToBlackImage;
 
+    [Header("Buttons")]
+    public GameObject m_ObjectivesButton;
+    public GameObject m_DictionaryButton;
+
     [Header("Misc Assets")]
     public Sprite m_RedCross;
     public Sprite m_greenTick;
@@ -93,6 +97,8 @@ public class UIController : MonoBehaviour
     private void Start()
     {
         SetFadeToBlackState(eFadeToBlackState.None);
+        m_ObjectivesButton.gameObject.SetActive(false);
+        m_DictionaryButton.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -214,6 +220,9 @@ public class UIController : MonoBehaviour
             m_type = MessageBuffer.eType.NewWord,
             m_word = word,
         });
+
+        // Ensure dictionary button enabled when we have objectives
+        m_DictionaryButton.gameObject.SetActive(true);
     }
 
     public void DisplayMessageObjectiveUnlocked(ObjectiveData objective)
@@ -223,6 +232,9 @@ public class UIController : MonoBehaviour
             m_type = MessageBuffer.eType.ObjectiveUnlocked,
             m_objective = objective,
         });
+
+        // Ensure objective button enabled when we have objectives
+        m_ObjectivesButton.gameObject.SetActive(true);
     }
 
     public void DisplayMessageObjectiveCompleted(ObjectiveData objective)
