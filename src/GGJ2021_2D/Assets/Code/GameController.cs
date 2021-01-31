@@ -64,10 +64,11 @@ public class GameController : MonoBehaviour
     {
         yield return null;
 
+        const float FADE_T = 0.5F;
+
         // Fade to black
-        {
-            // UI code here
-        }
+        UIController.Instance.FadeToBlack(FADE_T);
+        yield return new WaitForSeconds(FADE_T);
 
         // Async scene load
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneIndex);
@@ -84,9 +85,8 @@ public class GameController : MonoBehaviour
         }
 
         // Unfade 
-        {
-            // UI code here 
-        }
+        // Fade to black
+        UIController.Instance.FadeFromBlack(FADE_T);
     }
 
     private void OnUnitySceneLoaded(Scene scene, LoadSceneMode mode)

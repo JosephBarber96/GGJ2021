@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -32,6 +33,16 @@ public class UIController : MonoBehaviour
         public LanguageWord m_word;
         public ObjectiveData m_objective;
     }
+    
+    public enum eFadeToBlackState
+    {
+        None,
+        FadingIn,
+        In,
+        FadingOut,
+    }
+
+    public const float BLACK_FADE_TIME = 0.5f;
 
     public static UIController Instance { get; private set; }
 
@@ -55,6 +66,9 @@ public class UIController : MonoBehaviour
     [Header("Objectives")]
     public UIObjectiveController m_objectiveController;
 
+    [Header("Fade to black")]
+    public Image m_fadeToBlackImage;
+
     [Header("Misc Assets")]
     public Sprite m_RedCross;
     public Sprite m_greenTick;
@@ -73,10 +87,15 @@ public class UIController : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        SetFadeToBlackState(eFadeToBlackState.None);
+    }
+
     private void Update()
     {
-        // Words learned UI
         UpdateMessages();
+        UpdateFadeToBlack();
     }
 
 
@@ -272,6 +291,92 @@ public class UIController : MonoBehaviour
                 GameObject.Destroy(m_wordUnlockedAnimatorsList[i].m_panel.gameObject);
                 m_wordUnlockedAnimatorsList.RemoveAt(i);
             }
+        }
+    }
+
+
+
+
+    //------------------------------
+    // FadeToBlack
+
+    private eFadeToBlackState m_fadeToBlackState;
+    private float m_fadeToBlackElapsedTime;
+    private float m_FadeToBlackTargetTime;
+
+    public void FadeToBlack(float t = BLACK_FADE_TIME)
+    {
+        m_FadeToBlackTargetTime = t;
+        SetFadeToBlackState(eFadeToBlackState.FadingIn);
+    }
+
+    public void FadeFromBlack(float t = BLACK_FADE_TIME)
+    {
+        m_FadeToBlackTargetTime = t;
+        SetFadeToBlackState(eFadeToBlackState.FadingOut);
+    }
+
+    private void SetFadeToBlackState(eFadeToBlackState newState)
+    {
+        m_fadeToBlackElapsedTime = 0f;
+        m_fadeToBlackState = newState;
+
+        switch (m_fadeToBlackState)
+        {
+            case eFadeToBlackState.None:
+            case eFadeToBlackState.FadingIn:
+                Utils.SetAlpha(m_fadeToBlackImage, 0);
+                break;
+
+            case eFadeToBlackState.In:
+            case eFadeToBlackState.FadingOut:
+                Utils.SetAlpha(m_fadeToBlackImage, 1);
+                break;
+        }
+    }
+
+    private void UpdateFadeToBlack()
+    {
+        m_fadeToBlackElapsedTime += Time.deltaTime;
+
+        switch (m_fadeToBlackState)
+        {
+            case eFadeToBlackState.FadingIn:
+                {
+                    float normalized = m_fadeToBlackElapsedTime / m_FadeToBlackTargetTime;
+                    bool done = false;
+                    if (normalized > 1)
+                    {
+                        done = true;
+                    }
+
+                    Utils.SetAlpha(m_fadeToBlackImage, normalized);
+
+                    if (done)
+                    {
+                        SetFadeToBlackState(eFadeToBlackState.In);
+                    }
+                }
+                break;
+
+            case eFadeToBlackState.FadingOut:
+                {
+                    float normalized = m_fadeToBlackElapsedTime / m_FadeToBlackTargetTime;
+                    bool done = false;
+                    if (normalized > 1)
+                    {
+                        done = true;
+                    }
+
+                    float a = 1 - normalized;
+                    Utils.SetAlpha(m_fadeToBlackImage, a);
+
+                    if (done)
+                    {
+                        SetFadeToBlackState(eFadeToBlackState.None);
+                    }
+                }
+                break;
         }
     }
 
