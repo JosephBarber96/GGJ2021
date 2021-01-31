@@ -29,4 +29,10 @@ public class UIWordPanel : MonoBehaviour
             m_alienText.color = m_unknownWordColour;
         }    
     }
+
+    public void SetAlpha(float a)
+    {
+        Utils.SetAlpha(m_englishText, a);
+        Utils.SetAlpha(m_alienText, a);
+    }
 }
