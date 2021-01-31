@@ -11185,6 +11185,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4532210103953106882, guid: b1202f179a231784da84d20aa6c5e0bb,
+        type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532210103953106882, guid: b1202f179a231784da84d20aa6c5e0bb,
+        type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532210103953106882, guid: b1202f179a231784da84d20aa6c5e0bb,
+        type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1202f179a231784da84d20aa6c5e0bb, type: 3}
 --- !u!4 &1999096375 stripped
