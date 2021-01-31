@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49eb740dc1613ec44bfda5874e6ab0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_inspectIcon: {fileID: 6686278007904405419}
+  m_InteractionHintIcon: {fileID: 6686278007904405419}
   OnInteractEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -257,4 +257,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.5
+  m_Radius: 1.5
