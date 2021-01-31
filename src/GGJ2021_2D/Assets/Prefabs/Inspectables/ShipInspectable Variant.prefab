@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b261f7335506ab1438cedc57a99548c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ObjectivesToComplete: []
   m_ObjectivesToUnlock:
   - {fileID: 11400000, guid: 1c633a9b11c6f4c4ba20bdecc24a63a4, type: 2}
   - {fileID: 11400000, guid: b8d9e3acc0134af40a6a60cc682296c2, type: 2}
@@ -178,6 +179,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 2c9643e1d63f5334096624994be56d71,
         type: 3}
+    - target: {fileID: 6284186899411224264, guid: 8d088941a6cc3a947827cf6b536375cb,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6284186899411224264, guid: 8d088941a6cc3a947827cf6b536375cb,
         type: 3}
       propertyPath: m_WasSpriteAssigned

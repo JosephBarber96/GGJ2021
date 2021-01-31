@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50a98d12261c5f94bbb7bfd22d0f097f, type: 3}
-  m_Name: ShipInfo
+  m_Script: {fileID: 11500000, guid: da2c285a71b7f3d4786f8369a42cf180, type: 3}
+  m_Name: Sign_AlienInspectable
   m_EditorClassIdentifier: 
-  InspectIcon: {fileID: 21300000, guid: 2c9643e1d63f5334096624994be56d71, type: 3}
-  InspectName: Broken Ship
-  InspectDescription: Oh Dear! My ship appears to be broken. Maybe someone can help?
+  InspectIcon: {fileID: 21300000, guid: d827797f960649c42887c0b7b5ca952c, type: 3}
+  InspectName: Sign
+  InspectText: Mike's Shop
