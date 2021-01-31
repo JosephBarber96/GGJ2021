@@ -105,6 +105,16 @@ public class UIController : MonoBehaviour
         UpdateFadeToBlack();
     }
 
+    private void OnEnable()
+    {
+        GameController.OnSceneLoad += OnSceneLoad;
+    }
+
+    private void OnDisable()
+    {
+        GameController.OnSceneLoad -= OnSceneLoad;
+    }
+
 
 
     //------------------------------
@@ -430,5 +440,13 @@ public class UIController : MonoBehaviour
         }
 
         return null;
+    }
+
+    private void OnSceneLoad(GameController.eScenes scene)
+    {
+        if (scene == GameController.eScenes.EndCredits)
+        {
+            m_ObjectivesButton.gameObject.SetActive(false);
+        }
     }
 }
