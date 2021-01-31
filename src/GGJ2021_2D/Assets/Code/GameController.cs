@@ -40,7 +40,17 @@ public class GameController : MonoBehaviour
 
 
 
-    // -----------------------
+    //------------------------
+    // Pubilc calls
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+
+
+    //------------------------
     // Scene loading
 
     private eScenes m_nextScene;

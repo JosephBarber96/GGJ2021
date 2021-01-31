@@ -311,6 +311,36 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4281019179
       objectReference: {fileID: 0}
+    - target: {fileID: 1766597028119413975, guid: 14ab1587847e4a84788a350cfbb997f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1766597028119413975, guid: 14ab1587847e4a84788a350cfbb997f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1766597028119413975, guid: 14ab1587847e4a84788a350cfbb997f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4349340677883093386}
+    - target: {fileID: 1766597028119413975, guid: 14ab1587847e4a84788a350cfbb997f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1766597028119413975, guid: 14ab1587847e4a84788a350cfbb997f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 1766597028119413975, guid: 14ab1587847e4a84788a350cfbb997f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2282042560513878997, guid: 14ab1587847e4a84788a350cfbb997f5,
         type: 3}
       propertyPath: m_IsActive

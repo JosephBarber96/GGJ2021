@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class ObjectiveItem : MonoBehaviour
 {
-    public List<ObjectiveData> m_ObjectivesToComplete;
+    public bool UnlockOnStart = false;
 
+    public List<ObjectiveData> m_ObjectivesToComplete;
     public List<ObjectiveData> m_ObjectivesToUnlock;
+
+    private void Update()
+    {
+        if (UnlockOnStart)
+        {
+            Unlock();
+        }
+    }
 
     public void Unlock()
     {
