@@ -43,7 +43,7 @@ public class ObjectiveController : MonoBehaviour
     // Objective
 
     public void UnlockObjective(ObjectiveData objective)
-    {   
+    {
         if (IsObjectiveUnlocked(objective.m_Objective)) { return; }
 
         ObjectiveProgression progression = new ObjectiveProgression
@@ -56,7 +56,7 @@ public class ObjectiveController : MonoBehaviour
 
         UIController.Instance.DisplayMessageObjectiveUnlocked(objective);
     }
-    
+
     public void CompleteObjective(eObjectives objective)
     {
         for (int i = 0; i < CurrentObjectives.Count; i++)

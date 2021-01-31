@@ -49,7 +49,7 @@ public class UIInspectPanel : MonoBehaviour
     public void DisplayAlienInfo(AlienInspectableInformation info)
     {
         m_InspectBubbleRect.gameObject.SetActive(true);
-        m_inspectTitle.text = info.InspectName.m_Word;
+        m_inspectTitle.text = info.InspectName;
         m_inspectImage.sprite = info.InspectIcon;
 
         SetState(eState.AnimatingOn);
@@ -109,7 +109,7 @@ public class UIInspectPanel : MonoBehaviour
         }
 
         SetThisAlpha(normalized);
-       
+
 
         if (done)
         {

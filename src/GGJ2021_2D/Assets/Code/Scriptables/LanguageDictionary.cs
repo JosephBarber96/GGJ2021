@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
@@ -8,8 +7,6 @@ public class LanguageDictionary : ScriptableObject
 {
     [SerializeField]
     public List<LanguageWord> Words = new List<LanguageWord>();
-
-
 
 #if UNITY_EDITOR
     [ContextMenu("Populate Dictionary")]
@@ -24,7 +21,7 @@ public class LanguageDictionary : ScriptableObject
         foreach (string guid in guids1)
         {
             string path = AssetDatabase.GUIDToAssetPath(guid);
-            Words.Add( (LanguageWord) AssetDatabase.LoadAssetAtPath(path, typeof(LanguageWord)));
+            Words.Add((LanguageWord)AssetDatabase.LoadAssetAtPath(path, typeof(LanguageWord)));
         }
     }
 #endif
