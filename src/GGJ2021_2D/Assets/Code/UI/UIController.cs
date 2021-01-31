@@ -55,7 +55,8 @@ public class UIController : MonoBehaviour
     public UIConversationController m_conversationController;
 
     [Header("Inspect")]
-    public UIInspectPanel m_inspectPanel;
+    public UIInspectPanelEnglish m_inspectPanelEnglish;
+    public UIInspectPanelAlien m_inspectPanelAlien;
 
     [Header("Word Unlocked")]
     public Transform m_WordUnlockedPanel;
@@ -75,6 +76,7 @@ public class UIController : MonoBehaviour
 
     private List<MessageAnimator> m_wordUnlockedAnimatorsList = new List<MessageAnimator>();
     private List<MessageBuffer> m_messageBufferList = new List<MessageBuffer>();
+    private UIInspectPanelBase m_currentInspectPanel;
 
     private void Awake()
     {
@@ -141,7 +143,9 @@ public class UIController : MonoBehaviour
         else
         {
             CurrentInspectable = inspectable;
-            m_inspectPanel.DisplayAlienInfo(inspectable.Information);
+            m_currentInspectPanel = m_inspectPanelAlien;
+
+            m_inspectPanelAlien.DisplayAlienInfo(inspectable.Information);
         }
     }
 
@@ -154,14 +158,20 @@ public class UIController : MonoBehaviour
         else
         {
             CurrentInspectable = inspectable;
-            m_inspectPanel.DisplayEnglishInfo(inspectable.Information);
+            m_currentInspectPanel = m_inspectPanelEnglish;
+
+            m_inspectPanelEnglish.DisplayEnglishInfo(inspectable.Information);
         }
     }
 
     public void HideInspect()
     {
         CurrentInspectable = null;
-        m_inspectPanel.AnimateOff();
+
+        if (m_currentInspectPanel != null)
+        {
+            m_currentInspectPanel.AnimateOff();
+        }
     }
 
 

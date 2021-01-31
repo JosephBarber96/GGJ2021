@@ -1,28 +1,19 @@
-﻿using TMPro;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-public class UIInspectPanel : MonoBehaviour
+public class UIInspectPanelAlien : UIInspectPanelBase
 {
-    public enum eState
-    {
-        OFF,
-        AnimatingOn,
-        Idle,
-        AnimatingOff,
-    }
-
-    public const float TRANSITION_TIME = 0.25f;
-
     public RectTransform m_InspectBubbleRect;
     public TextMeshProUGUI m_inspectTitle;
-    public TextMeshProUGUI m_inspectDescription;
+    public Transform m_descriptionParent;
     public Image m_inspectImage;
     public Image[] m_animatableImages;
+    public GameObject UIWordPanelPrefab;
 
-    private eState m_state;
-    private float m_stateTime;
-
+    private List<UIWordPanel> m_wordPanelList = new List<UIWordPanel>();
 
     private void Update()
     {
@@ -50,33 +41,32 @@ public class UIInspectPanel : MonoBehaviour
     {
         m_InspectBubbleRect.gameObject.SetActive(true);
         m_inspectTitle.text = info.InspectName;
-        m_inspectDescription.text = info.InspectText;
+
+        // Description
+        {
+            string[] words = info.InspectText.Split(' ');
+            foreach (string word in words)
+            {
+                UIWordPanel wordPanel = GameObject.Instantiate(UIWordPanelPrefab).GetComponent<UIWordPanel>();
+                wordPanel.Setup(word);
+                wordPanel.transform.SetParent(m_descriptionParent.transform, false);
+
+                m_wordPanelList.Add(wordPanel);
+            }
+        }
+
         m_inspectImage.sprite = info.InspectIcon;
 
         SetState(eState.AnimatingOn);
     }
 
-    public void DisplayEnglishInfo(EnglishInspectableInformation info)
-    {
-        m_InspectBubbleRect.gameObject.SetActive(true);
-        m_inspectTitle.text = info.InspectName;
-        m_inspectDescription.text = info.InspectDescription;
-        m_inspectImage.sprite = info.InspectIcon;
-
-        SetState(eState.AnimatingOn);
-    }
-
-    public void AnimateOff()
-    {
-        SetState(eState.AnimatingOff);
-    }
 
 
 
     // -----------------------
     // Private
 
-    private void SetState(eState newState)
+    protected override void SetState(eState newState)
     {
         m_stateTime = 0f;
 
@@ -94,6 +84,14 @@ public class UIInspectPanel : MonoBehaviour
                 break;
             case eState.OFF:
                 m_InspectBubbleRect.gameObject.SetActive(false);
+                {
+                    int childCount = m_descriptionParent.transform.childCount;
+                    for (int i = childCount - 1; i >= 0; i--)
+                    {
+                        GameObject.Destroy(m_descriptionParent.transform.GetChild(i).gameObject);
+                    }
+                    m_wordPanelList.Clear();
+                }
                 break;
 
         }
@@ -110,7 +108,6 @@ public class UIInspectPanel : MonoBehaviour
         }
 
         SetThisAlpha(normalized);
-
 
         if (done)
         {
@@ -140,7 +137,13 @@ public class UIInspectPanel : MonoBehaviour
     private void SetThisAlpha(float a)
     {
         Utils.SetAlpha(m_inspectTitle, a);
-        Utils.SetAlpha(m_inspectDescription, a);
+
+        for (int i = 0; i < m_wordPanelList.Count; i++)
+        {
+            Utils.SetAlpha(m_wordPanelList[i].m_englishText, a);
+            Utils.SetAlpha(m_wordPanelList[i].m_alienText, a);
+        }
+
         for (int i = 0; i < m_animatableImages.Length; i++)
         {
             Utils.SetAlpha(m_animatableImages[i], a);
