@@ -140,6 +140,7 @@ public class UIConversationController : MonoBehaviour
                         UIWordPanel wordPanel = GameObject.Instantiate(UIWordPanelPrefab).GetComponent<UIWordPanel>();
                         wordPanel.Setup(word);
                         wordPanel.transform.SetParent(m_wordPanelParent.transform, false);
+                        wordPanel.SetAlpha(0);
 
                         UIWordPanelAnimator anim = new UIWordPanelAnimator
                         {
@@ -226,8 +227,7 @@ public class UIConversationController : MonoBehaviour
                     m_currentSentence[i].m_done = true;
                 }
 
-                Utils.SetAlpha(m_currentSentence[i].m_panel.m_alienText, normalized);
-                Utils.SetAlpha(m_currentSentence[i].m_panel.m_englishText, normalized);
+                m_currentSentence[i].m_panel.SetAlpha(normalized);
             }
         }
 
@@ -266,8 +266,7 @@ public class UIConversationController : MonoBehaviour
                 }
 
                 float a = 1 - normalized;
-                Utils.SetAlpha(m_currentSentence[i].m_panel.m_alienText, a);
-                Utils.SetAlpha(m_currentSentence[i].m_panel.m_englishText, a);
+                m_currentSentence[i].m_panel.SetAlpha(a);
             }
         }
 

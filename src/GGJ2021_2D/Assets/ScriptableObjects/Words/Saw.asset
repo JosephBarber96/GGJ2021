@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da2c285a71b7f3d4786f8369a42cf180, type: 3}
-  m_Name: Sign_AlienInspectable_Fuel
+  m_Script: {fileID: 11500000, guid: 67755cffa46a700408ae64e58fb4dcfc, type: 3}
+  m_Name: Saw
   m_EditorClassIdentifier: 
-  InspectIcon: {fileID: 21300000, guid: d827797f960649c42887c0b7b5ca952c, type: 3}
-  InspectName: Sign
-  InspectText: fuel south
+  m_Word: Saw
