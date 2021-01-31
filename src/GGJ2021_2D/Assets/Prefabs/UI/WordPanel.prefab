@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_englishText: {fileID: 7196503145603193013}
   m_alienText: {fileID: 4644498511249874240}
-  m_unknownWordColour: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_unknownWordColour: {r: 0, g: 0, b: 0, a: 1}
   m_knownWordColour: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &3062110126704190706
 GameObject:
