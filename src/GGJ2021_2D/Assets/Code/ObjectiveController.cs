@@ -63,7 +63,7 @@ public class ObjectiveController : MonoBehaviour
         var currentObjective =
             CurrentObjectives.FirstOrDefault(x => x.m_objectiveData.m_Objective == objective.m_Objective);
 
-        if (currentObjective != null)
+        if (currentObjective != null && !currentObjective.m_isComplete)
         {
             currentObjective.m_isComplete = true;
             UIController.Instance.DisplayMessageObjectiveCompleted(objective);
