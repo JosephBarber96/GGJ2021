@@ -3656,7 +3656,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 30
-      m_TileSpriteIndex: 28
+      m_TileSpriteIndex: 32
       m_TileMatrixIndex: 0
       m_TileColorIndex: 12
       m_TileObjectToInstantiateIndex: 65535
@@ -7073,9 +7073,8 @@ Tilemap:
   - m_RefCount: 6
     m_Data: {fileID: -2136909990832166766, guid: 71428b0b5de94e14bb3e48262727a261,
       type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -3915477699214210540, guid: 71428b0b5de94e14bb3e48262727a261,
-      type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 6
     m_Data: {fileID: -2634495213465628640, guid: a042d99b106b3214f90c9aaa22536270,
       type: 3}
@@ -7085,8 +7084,9 @@ Tilemap:
   - m_RefCount: 4
     m_Data: {fileID: -619568073084061436, guid: 71428b0b5de94e14bb3e48262727a261,
       type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -3915477699214210540, guid: 71428b0b5de94e14bb3e48262727a261,
+      type: 3}
   - m_RefCount: 17
     m_Data: {fileID: 742110320081961946, guid: 8ece7a313589f944590733f402e42d91, type: 3}
   - m_RefCount: 3
@@ -24349,6 +24349,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fountain
+      objectReference: {fileID: 0}
+    - target: {fileID: 3584972401207413798, guid: 4a2e58bca05db9c4da16d694cc66ad6d,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3584972401207413799, guid: 4a2e58bca05db9c4da16d694cc66ad6d,
         type: 3}
