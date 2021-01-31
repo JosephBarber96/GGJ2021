@@ -16,7 +16,7 @@ MonoBehaviour:
   m_ObjectivesToUnlock:
   - {fileID: 11400000, guid: 1c633a9b11c6f4c4ba20bdecc24a63a4, type: 2}
   - {fileID: 11400000, guid: b8d9e3acc0134af40a6a60cc682296c2, type: 2}
---- !u!114 &8464969109943987422
+--- !u!114 &5272706244130906410
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25,7 +25,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7928300399873820159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94a4feae322a68e4a9b22f481ee73f3f, type: 3}
+  m_Script: {fileID: 11500000, guid: 352be5c2c1782484095aca16375ad196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionHintIcon: {fileID: 3970875227188913428}

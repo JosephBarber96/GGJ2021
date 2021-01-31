@@ -44,6 +44,10 @@ public class CameraController : MonoBehaviour
             m_camera = Camera.main;
             m_state = eState.On;
         }
+        else
+        {
+            m_state = eState.Off;
+        }
     }
 
     private void LateUpdate()

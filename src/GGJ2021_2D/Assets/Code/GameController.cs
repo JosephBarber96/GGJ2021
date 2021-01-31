@@ -10,7 +10,8 @@ public class GameController : MonoBehaviour
     {
         MainMenu,
         Tutorial,
-        Game
+        Game,
+        EndCredits
     }
 
     public static GameController Instance { get; private set; }
@@ -56,6 +57,10 @@ public class GameController : MonoBehaviour
 
             case eScenes.Game:
                 StartCoroutine(LoadScene(2));
+                break;
+
+            case eScenes.EndCredits:
+                StartCoroutine(LoadScene(3));
                 break;
         }
     }

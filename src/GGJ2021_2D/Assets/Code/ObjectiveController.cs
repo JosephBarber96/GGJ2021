@@ -104,4 +104,24 @@ public class ObjectiveController : MonoBehaviour
         }
         return null;
     }
+
+    public bool HasObjectives()
+    {
+        return (CurrentObjectives.Count > 0);
+    }
+
+    public bool AreAllObjectivesComplete()
+    {
+        if (!HasObjectives()) { return false; }
+
+        for (int i = 0; i < CurrentObjectives.Count; i++)
+        {
+            if (!CurrentObjectives[i].m_isComplete)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
