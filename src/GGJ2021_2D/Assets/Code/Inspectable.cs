@@ -6,7 +6,8 @@ using UnityEngine.Events;
 public abstract class Inspectable : MonoBehaviour, IInteractable
 {
     [Header("Inspectable")]
-    public SpriteRenderer m_inspectIcon;
+    [UnityEngine.Serialization.FormerlySerializedAs("m_inspectIcon")]
+    public SpriteRenderer m_InteractionHintIcon;
     [UnityEngine.Serialization.FormerlySerializedAs("OnInteract")]
     public UnityEvent OnInteractEvent;
 
@@ -15,9 +16,9 @@ public abstract class Inspectable : MonoBehaviour, IInteractable
 
     private void Start()
     {
-        m_inspectSpriteStartPos = m_inspectIcon.transform.position;
+        m_inspectSpriteStartPos = m_InteractionHintIcon.transform.position;
         m_inspectSpriteBouncePos = m_inspectSpriteStartPos + Vector2.up * 0.25f;
-        Utils.SetAlpha(m_inspectIcon, 0);
+        Utils.SetAlpha(m_InteractionHintIcon, 0);
     }
 
     private void Update()
@@ -67,12 +68,12 @@ public abstract class Inspectable : MonoBehaviour, IInteractable
             float normalized = m_iconT / ICON_LERP_TIME;
 
             // Lerp alpha
-            Utils.SetAlpha(m_inspectIcon, normalized);
+            Utils.SetAlpha(m_InteractionHintIcon, normalized);
 
             // Bounce position
             float easing = Easing.Back.Out(normalized);
             Vector2 pos = Vector2.Lerp(m_inspectSpriteStartPos, m_inspectSpriteBouncePos, easing);
-            m_inspectIcon.transform.position = pos;
+            m_InteractionHintIcon.transform.position = pos;
 
             if (normalized > 1)
                 m_iconState = eInspectIconState.On;
@@ -84,11 +85,11 @@ public abstract class Inspectable : MonoBehaviour, IInteractable
             float normalized = m_iconT / ICON_LERP_TIME;
 
             // Lerp alpha
-            Utils.SetAlpha(m_inspectIcon, 1 - normalized);
+            Utils.SetAlpha(m_InteractionHintIcon, 1 - normalized);
 
             // Bounce position
             Vector2 pos = Vector2.Lerp(m_inspectSpriteBouncePos, m_inspectSpriteStartPos, normalized);
-            m_inspectIcon.transform.position = pos;
+            m_InteractionHintIcon.transform.position = pos;
 
             if (normalized > 1) 
                 m_iconState = eInspectIconState.Off;

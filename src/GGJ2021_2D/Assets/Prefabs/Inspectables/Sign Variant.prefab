@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ad3f8677fbb034785e6abb9b751018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_inspectIcon: {fileID: 119910033020711988}
+  m_InteractionHintIcon: {fileID: 6392748912567588056}
   OnInteractEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -24,6 +24,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2802631451975227206, guid: 8d088941a6cc3a947827cf6b536375cb,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802631451975227206, guid: 8d088941a6cc3a947827cf6b536375cb,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802631451975227206, guid: 8d088941a6cc3a947827cf6b536375cb,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802631451975227206, guid: 8d088941a6cc3a947827cf6b536375cb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.32
+      objectReference: {fileID: 0}
     - target: {fileID: 5617350711114964883, guid: 8d088941a6cc3a947827cf6b536375cb,
         type: 3}
       propertyPath: m_Size.x
@@ -123,9 +143,9 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6241966245225542396}
   m_PrefabAsset: {fileID: 0}
---- !u!212 &119910033020711988 stripped
+--- !u!212 &6392748912567588056 stripped
 SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 6284186899411224264, guid: 8d088941a6cc3a947827cf6b536375cb,
+  m_CorrespondingSourceObject: {fileID: 1020189004441495076, guid: 8d088941a6cc3a947827cf6b536375cb,
     type: 3}
   m_PrefabInstance: {fileID: 6241966245225542396}
   m_PrefabAsset: {fileID: 0}
