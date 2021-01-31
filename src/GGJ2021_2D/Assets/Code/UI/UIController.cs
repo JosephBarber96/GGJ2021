@@ -84,9 +84,25 @@ public class UIController : MonoBehaviour
     //------------------------------
     // Conversation
 
+    public NPC CurrentNpc { get; private set; }
+
     public void StartConversation(NPC npc)
     {
-        m_conversationController.StartConversation(npc);
+        if (CurrentNpc == npc)
+        {
+            CloseConversation();
+        }
+        else
+        {
+            CurrentNpc = npc;
+            m_conversationController.StartConversation(npc);
+        }
+    }
+
+    public void CloseConversation()
+    {
+        CurrentNpc = null;
+        m_conversationController.AnimateOff();
     }
 
 
@@ -126,7 +142,7 @@ public class UIController : MonoBehaviour
     public void HideInspect()
     {
         CurrentInspectable = null;
-        m_inspectPanel.HideInfo();
+        m_inspectPanel.AnimateOff();
     }
 
 

@@ -7,9 +7,16 @@ public class AlienInspectable : Inspectable
     [Header("Alien Information")]
     public AlienInspectableInformation Information;
 
-    public override void Interact(Player player)
+    protected override void OnInteract(Player player)
     {
-        base.Interact(player);
         UIController.Instance.InspectAlienItem(this);
+    }
+
+    protected override void OnPlayerExit()
+    {
+        if (UIController.Instance.CurrentInspectable == this)
+        {
+            UIController.Instance.HideInspect();
+        }
     }
 }

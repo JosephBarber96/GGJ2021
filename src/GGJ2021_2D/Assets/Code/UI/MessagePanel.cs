@@ -24,7 +24,7 @@ public class MessagePanel : MonoBehaviour
 
     public void SetAlpha(float alpha)
     {
-        Utils.SetImageAlpha(m_panelImage, alpha);
+        Utils.SetAlpha(m_panelImage, alpha);
         Color c = m_text.color;
         c.a = alpha;
         m_text.color = c;

@@ -2,31 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC : MonoBehaviour
+public class NPC : Inspectable
 {
-    [System.Serializable]
-    public class NPCSentence
-    {
-        public List<LanguageWord> m_Words = new List<LanguageWord>();
-    }
-
-    [Header("Sentence")]
+    [Header("NPC")]
+    public Sprite m_ChatIcon;
     public string m_chatSentence;
     public List<LanguageWord> m_unlockedWords;
-    public Sprite m_ChatIcon;
 
-    public void OnMouseOver()
+    protected override void OnInteract(Player player)
     {
-        if (Input.GetMouseButtonDown(0))
+        UIController.Instance.StartConversation(this);
+
+        // Unlock the words
+        for (int i = 0; i < m_unlockedWords.Count; i++)
         {
-            UIController.Instance.StartConversation(this);
+            LanguageManager.Instance.LearnWord(m_unlockedWords[i]);
+        }
+    }
 
-            // Unlock the words
-            for (int i = 0; i < m_unlockedWords.Count; i++)
-            {
-                LanguageManager.Instance.LearnWord(m_unlockedWords[i]);
-            }
-
+    protected override void OnPlayerExit()
+    {
+        if (UIController.Instance.CurrentNpc == this)
+        {
+            UIController.Instance.CloseConversation();
         }
     }
 }

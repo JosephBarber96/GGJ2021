@@ -573,6 +573,13 @@ MonoBehaviour:
   m_inspectTitle: {fileID: 887533171352906298}
   m_inspectDescription: {fileID: 6486534710407598533}
   m_inspectImage: {fileID: 1688387941427655520}
+  m_animatableImages:
+  - {fileID: 1688387941427655520}
+  - {fileID: 4838833351713696941}
+  - {fileID: 5662250964850059415}
+  - {fileID: 8809704818438020412}
+  - {fileID: 428069090175907402}
+  - {fileID: 795059744495347105}
 --- !u!1 &1952607022097070612
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,6 +917,7 @@ MonoBehaviour:
   m_wordPanelParent: {fileID: 8845156199195545510}
   m_NPCSpeechBubbleImage: {fileID: 431680614549117254}
   m_NPCChatImage: {fileID: 4802826289014270687}
+  m_chatBackImage: {fileID: 2930227642580459528}
   UIWordPanelPrefab: {fileID: 2332328388056099896, guid: 75c19ef0b9997bf4fb7c4d4530287b11,
     type: 3}
 --- !u!1 &2720580652325436156
@@ -1284,7 +1292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 2
+    m_Left: 15
     m_Right: 2
     m_Top: 2
     m_Bottom: 2

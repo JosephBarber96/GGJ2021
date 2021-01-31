@@ -7,9 +7,16 @@ public class EnglishInspectable : Inspectable
     [Header("English Information")]
     public EnglishInspectableInformation Information;
 
-    public override void Interact(Player player)
+    protected override void OnInteract(Player player)
     {
-        base.Interact(player);
         UIController.Instance.InspectEnglishItem(this);
+    }
+
+    protected override void OnPlayerExit()
+    {
+        if (UIController.Instance.CurrentInspectable == this)
+        {
+            UIController.Instance.HideInspect();
+        }
     }
 }

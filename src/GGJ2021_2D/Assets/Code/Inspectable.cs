@@ -7,7 +7,8 @@ public abstract class Inspectable : MonoBehaviour, IInteractable
 {
     [Header("Inspectable")]
     public SpriteRenderer m_inspectIcon;
-    public UnityEvent OnInteract;
+    [UnityEngine.Serialization.FormerlySerializedAs("OnInteract")]
+    public UnityEvent OnInteractEvent;
 
     private Vector2 m_inspectSpriteStartPos;
     private Vector2 m_inspectSpriteBouncePos;
@@ -16,7 +17,7 @@ public abstract class Inspectable : MonoBehaviour, IInteractable
     {
         m_inspectSpriteStartPos = m_inspectIcon.transform.position;
         m_inspectSpriteBouncePos = m_inspectSpriteStartPos + Vector2.up * 0.25f;
-        Utils.SetImageAlpha(m_inspectIcon, 0);
+        Utils.SetAlpha(m_inspectIcon, 0);
     }
 
     private void Update()
@@ -28,13 +29,17 @@ public abstract class Inspectable : MonoBehaviour, IInteractable
     //-----------------------
     // Player interact  
 
-    public virtual void Interact(Player player)
+    public void Interact(Player player)
     {
-        if (OnInteract != null)
+        if (OnInteractEvent != null)
         {
-            OnInteract.Invoke();
-        } 
+            OnInteractEvent.Invoke();
+        }
+
+        OnInteract(player);
     }
+
+    protected abstract void OnInteract(Player player);
 
 
     //-----------------------
@@ -62,7 +67,7 @@ public abstract class Inspectable : MonoBehaviour, IInteractable
             float normalized = m_iconT / ICON_LERP_TIME;
 
             // Lerp alpha
-            Utils.SetImageAlpha(m_inspectIcon, normalized);
+            Utils.SetAlpha(m_inspectIcon, normalized);
 
             // Bounce position
             float easing = Easing.Back.Out(normalized);
@@ -79,7 +84,7 @@ public abstract class Inspectable : MonoBehaviour, IInteractable
             float normalized = m_iconT / ICON_LERP_TIME;
 
             // Lerp alpha
-            Utils.SetImageAlpha(m_inspectIcon, 1 - normalized);
+            Utils.SetAlpha(m_inspectIcon, 1 - normalized);
 
             // Bounce position
             Vector2 pos = Vector2.Lerp(m_inspectSpriteBouncePos, m_inspectSpriteStartPos, normalized);
@@ -106,7 +111,7 @@ public abstract class Inspectable : MonoBehaviour, IInteractable
         m_iconT = 0f;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         Player p = collision.gameObject.GetComponent<Player>();
         if (p != null)
@@ -115,16 +120,15 @@ public abstract class Inspectable : MonoBehaviour, IInteractable
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    protected void OnTriggerExit2D(Collider2D collision)
     {
         Player p = collision.gameObject.GetComponent<Player>();
         if (p != null)
         {
             HideInspectIcon();
-            if (UIController.Instance.CurrentInspectable == this)
-            {
-                UIController.Instance.HideInspect();
-            }
+            OnPlayerExit();
         }
     }
+
+    protected abstract void OnPlayerExit();
 }
