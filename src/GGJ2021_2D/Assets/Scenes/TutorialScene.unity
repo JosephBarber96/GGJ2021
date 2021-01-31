@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -643,7 +643,7 @@ PrefabInstance:
     - target: {fileID: 7914827887235638538, guid: 198cfffd47ab51249bb300a7efac9910,
         type: 3}
       propertyPath: m_chatSentence
-      value: go south for help
+      value: go south for I fix
       objectReference: {fileID: 0}
     - target: {fileID: 7914827887235638538, guid: 198cfffd47ab51249bb300a7efac9910,
         type: 3}
@@ -654,7 +654,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_unlockedWords.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 1d3a9bb64641dfa4b81ab93aaffa1d3e,
+      objectReference: {fileID: 11400000, guid: a9b6d4ffa0dcb6a4ba70aad0cee57fea,
         type: 2}
     - target: {fileID: 7914827887235638538, guid: 198cfffd47ab51249bb300a7efac9910,
         type: 3}
