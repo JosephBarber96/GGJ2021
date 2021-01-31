@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public Animator PlayerAnimator;
     public Rigidbody2D Rb;
+    public Transform NorthRaycast, SouthRaycast, EastRaycast, WestRaycast;
 
     [Range(1, 50)]
     public float VerticalSpeed;
@@ -101,7 +102,11 @@ public class Player : MonoBehaviour
 
         moveDelta.Normalize();
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, moveDelta, RaycastLength, ~LayerMask.GetMask("Player"));
+        RaycastHit2D hit = Physics2D.Raycast(
+            GetRaycastOrigin(moveDelta),
+            moveDelta,
+            RaycastLength,
+            ~LayerMask.GetMask("Player"));
 
         if (hit.collider == null)
         {
@@ -115,6 +120,19 @@ public class Player : MonoBehaviour
         // Animator
         PlayerAnimator.SetFloat(_animXBlendHash, m_currentBlend.x);
         PlayerAnimator.SetFloat(_animYBlendHash, m_currentBlend.y);
+    }
+
+    private Vector2 GetRaycastOrigin(Vector2 moveDelta)
+    {
+        if (moveDelta.y > 0)
+            return NorthRaycast.transform.position;
+        if (moveDelta.y < 0) return SouthRaycast.transform.position;
+
+        if (moveDelta.x > 0)
+            return EastRaycast.transform.position;
+        if (moveDelta.x < 0)
+            return WestRaycast.transform.position;
+        return transform.position;
     }
 
     void OnTriggerEnter2D(Collider2D collider)
