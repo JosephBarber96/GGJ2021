@@ -50,6 +50,7 @@ public class UIInspectPanel : MonoBehaviour
     {
         m_InspectBubbleRect.gameObject.SetActive(true);
         m_inspectTitle.text = info.InspectName;
+        m_inspectDescription.text = info.InspectText;
         m_inspectImage.sprite = info.InspectIcon;
 
         SetState(eState.AnimatingOn);
