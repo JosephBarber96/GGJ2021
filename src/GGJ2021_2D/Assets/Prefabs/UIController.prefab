@@ -1197,11 +1197,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NPCSpeechBubbleTransform: {fileID: 6460777161952953097}
   m_wordPanelParent: {fileID: 8845156199195545510}
-  m_NPCSpeechBubbleImage: {fileID: 431680614549117254}
   m_NPCChatImage: {fileID: 4802826289014270687}
-  m_chatBackImage: {fileID: 2930227642580459528}
   UIWordPanelPrefab: {fileID: 2332328388056099896, guid: 75c19ef0b9997bf4fb7c4d4530287b11,
     type: 3}
+  m_animateableImages:
+  - {fileID: 431680614549117254}
+  - {fileID: 2718111947409888188}
+  - {fileID: 6012401964471724939}
+  - {fileID: 1246794432568618526}
+  - {fileID: 4802826289014270687}
+  - {fileID: 8961015016881688817}
+  - {fileID: 2930227642580459528}
 --- !u!1 &2720580652325436156
 GameObject:
   m_ObjectHideFlags: 0

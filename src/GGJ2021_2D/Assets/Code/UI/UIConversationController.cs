@@ -30,10 +30,9 @@ public class UIConversationController : MonoBehaviour
     [Header("Components")]
     public Transform m_NPCSpeechBubbleTransform;
     public Transform m_wordPanelParent;
-    public Image m_NPCSpeechBubbleImage;
     public Image m_NPCChatImage;
-    public Image m_chatBackImage;
     public GameObject UIWordPanelPrefab;
+    public Image[] m_animateableImages;
 
     // Private 
     private NPC m_currentNpc;
@@ -126,9 +125,7 @@ public class UIConversationController : MonoBehaviour
         {
             case eState.TransitionSpeechBubbleOn:
                 m_NPCChatImage.sprite = m_currentNpc.m_ChatIcon;
-                Utils.SetAlpha(m_NPCChatImage, 0);
-                Utils.SetAlpha(m_NPCSpeechBubbleImage, 0);
-                Utils.SetAlpha(m_chatBackImage, 0);
+                SetImagesAlpha(0);
                 break;
 
             case eState.TransitioningSentenceOn:
@@ -194,9 +191,7 @@ public class UIConversationController : MonoBehaviour
             normalized = 1;
         }
 
-        Utils.SetAlpha(m_NPCSpeechBubbleImage, normalized);
-        Utils.SetAlpha(m_NPCChatImage, normalized);
-        Utils.SetAlpha(m_chatBackImage, normalized);
+        SetImagesAlpha(normalized);
 
         if (exit)
         {
@@ -288,9 +283,8 @@ public class UIConversationController : MonoBehaviour
         }
 
         float a = 1 - normalized;
-        Utils.SetAlpha(m_NPCSpeechBubbleImage, a);
-        Utils.SetAlpha(m_NPCChatImage, a);
-        Utils.SetAlpha(m_chatBackImage, a);
+        SetImagesAlpha(a);
+
 
         if (exit)
         {
@@ -313,5 +307,13 @@ public class UIConversationController : MonoBehaviour
             GameObject.Destroy(m_wordPanelParent.transform.GetChild(i).gameObject);
         }
         m_currentSentence.Clear();
+    }
+
+    private void SetImagesAlpha(float a)
+    {
+        for (int i = 0; i < m_animateableImages.Length; i++)
+        {
+            Utils.SetAlpha(m_animateableImages[i], a);
+        }
     }
 }
