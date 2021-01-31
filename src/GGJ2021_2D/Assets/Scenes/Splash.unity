@@ -309,6 +309,7 @@ GameObject:
   - component: {fileID: 523221501}
   - component: {fileID: 523221500}
   - component: {fileID: 523221499}
+  - component: {fileID: 523221502}
   m_Layer: 5
   m_Name: Button_StartGame
   m_TagString: Untagged
@@ -427,6 +428,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523221497}
   m_CullTransparentMesh: 0
+--- !u!114 &523221502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523221497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1867204333}
+          m_MethodName: SetTextEnglish
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1374047688}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Play
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1867204333}
+          m_MethodName: SetTextAlien
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1374047688}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &624762350
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,6 +878,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1b7318c9d143844bd1ae93eb958a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AlienFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  EnglishFont: {fileID: 12800000, guid: dd5f2f3c8e9b81a4db39eb4dabd85b63, type: 3}
 --- !u!4 &1867204334
 Transform:
   m_ObjectHideFlags: 0
