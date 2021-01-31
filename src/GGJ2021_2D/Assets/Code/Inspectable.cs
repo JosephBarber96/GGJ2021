@@ -11,6 +11,8 @@ public abstract class Inspectable : MonoBehaviour, IInteractable
     [UnityEngine.Serialization.FormerlySerializedAs("OnInteract")]
     public UnityEvent OnInteractEvent;
 
+    public bool IsInspectable { get; private set; }
+
     private Vector2 m_inspectSpriteStartPos;
     private Vector2 m_inspectSpriteBouncePos;
 
@@ -19,11 +21,18 @@ public abstract class Inspectable : MonoBehaviour, IInteractable
         m_inspectSpriteStartPos = m_InteractionHintIcon.transform.position;
         m_inspectSpriteBouncePos = m_inspectSpriteStartPos + Vector2.up * 0.25f;
         Utils.SetAlpha(m_InteractionHintIcon, 0);
+        IsInspectable = true;
     }
 
     private void Update()
     {
         Update_InspectIcon();
+    }
+
+    private void OnDisable()
+    {
+        HideInspectIcon();
+        OnPlayerExit();
     }
 
 
@@ -32,6 +41,8 @@ public abstract class Inspectable : MonoBehaviour, IInteractable
 
     public void Interact(Player player)
     {
+        if (!IsInspectable) { return; }
+
         if (OnInteractEvent != null)
         {
             OnInteractEvent.Invoke();
@@ -41,6 +52,23 @@ public abstract class Inspectable : MonoBehaviour, IInteractable
     }
 
     protected abstract void OnInteract(Player player);
+
+
+
+    //-----------------------
+    // Public calls
+
+    public void HideObject()
+    {
+        this.IsInspectable = false;
+
+        // Dirty hack
+        SpriteRenderer[] sprs = this.GetComponentsInChildren<SpriteRenderer>();
+        for (int i = 0; i < sprs.Length; i++)
+        {
+            sprs[i].enabled = false;
+        }
+    }
 
 
     //-----------------------
@@ -115,7 +143,7 @@ public abstract class Inspectable : MonoBehaviour, IInteractable
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         Player p = collision.gameObject.GetComponent<Player>();
-        if (p != null)
+        if (p != null && IsInspectable)
         {
             ShowInspectIcon();
         }
